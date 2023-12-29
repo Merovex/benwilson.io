@@ -1,0 +1,36 @@
+_site
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+vendor
+# Site output
+_site/
+
+# Node modules and dependency directories
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Jekyll metadata
+.jekyll-metadata
+.jekyll-cache/
+.sass-cache/
+
+# Configuration files that may contain sensitive information
+.jekyll-cache/
+.env
+
+# MacOS system files
+.DS_Store
+
+# Text editor and IDE files/directories
+.vscode/
+.idea/
+*.sublime*
+*~
+
+# Optional: Exclude specific files or directories associated with your personal workflow
+# e.g., notes, drafts, or temporary files
+notes/
+drafts/
+

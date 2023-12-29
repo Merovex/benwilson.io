@@ -1,0 +1,19 @@
+---
+layout: default
+---
+{% include biography.html %}
+<div class="mb-12"></div>
+
+{% for post in site.posts %}
+<article class='post-card'>
+  <header>
+    <span>{{ post.date | date: "%-d %B %Y" }}</span>
+    <h2>{{ post.title }}</h2>
+  </header>
+  <div class="prosed my-4">{{ post.excerpt | strip_html | truncatewords: 50 }}</div>
+  <a class="absolute top-0 left-0 h-full w-full" href="{{ post.url }}"></a>
+  <footer>
+    <span class="inline-block mx-auto bordered rounded-full py-1 px-3">Read More</span>
+  </footer>
+</article>
+{% endfor %}
