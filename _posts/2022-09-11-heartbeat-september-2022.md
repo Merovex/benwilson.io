@@ -1,5 +1,6 @@
 ---
 title: 'Heartbeat: September 2022'
+layout: post
 aliases:
 - heartbeat-september-2022-i-reached-my-goal-4d52d481
 date: 2022-02-11 19:12:40.000000000 -05:00

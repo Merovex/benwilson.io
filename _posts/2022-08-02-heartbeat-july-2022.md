@@ -1,5 +1,6 @@
 ---
 title: 'Heartbeat: July 2022'
+layout: post
 date: 2022-08-02 19:10:38.000000000 -05:00
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
   amet venenatis dolor. Suspendisse eu justo elit. Cras lacinia turpis nulla, nec

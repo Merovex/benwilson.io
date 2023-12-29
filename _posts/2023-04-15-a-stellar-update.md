@@ -1,6 +1,7 @@
 ---
 title: A Stellar Update from Your Favorite Sci-Fi Author
 date: 2023-04-15 04:03:07.000000000 -05:00
+layout: post
 description: "Delve into my recent writing journey, as I return to the Postal Marines series and craft a captivating new quartet. Discover what's in store for readers, including high-stakes politics, intriguing diplomacy, thrilling space combat, and the series' signature humor."
 ---
 

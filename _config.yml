@@ -43,6 +43,10 @@ collections:
   books:
     output: true
     permalink: /books/:path/
+    layout: book
+  posts:
+    output: true
+    layout: post
 
 # Exclude from processing.
 # The following items will not be processed, by default.

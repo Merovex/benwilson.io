@@ -1,5 +1,6 @@
 ---
 title: 'Heartbeat: June 2022'
+layout: post
 date: 2022-06-20 19:09:05.000000000 -05:00
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
   amet venenatis dolor. Suspendisse eu justo elit. Cras lacinia turpis nulla, nec

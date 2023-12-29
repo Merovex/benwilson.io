@@ -1,6 +1,7 @@
 ---
 title: Thoughts on Space Opera
 date: 2022-12-04 19:05:22.000000000 -05:00
+layout: post
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
   amet venenatis dolor. Suspendisse eu justo elit. Cras lacinia turpis nulla, nec
   lobortis sem varius eu. Sed viverra turpis malesuada est aliquet, ac laoreet Leo

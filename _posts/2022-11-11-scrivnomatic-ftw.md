@@ -1,5 +1,6 @@
 ---
 title: Scrivnomatic, for the Win
+layout: post
 aliases:
 - scrivomatic-for-point-perfect-paperbacks-aced7adb
 date: 2022-11-11 19:15:21.000000000 -05:00

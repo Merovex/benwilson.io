@@ -2,6 +2,7 @@
 aliases:
 - "/p/223fe4c7"
 title: Hiatus
+layout: post
 date: 2021-12-05 08:26:29.000000000 -05:00
 description: Sometimes, you need to spend a little time away from what you enjoy.
   I'm coming back to the Postal Marines with a goal of releasing the first four books

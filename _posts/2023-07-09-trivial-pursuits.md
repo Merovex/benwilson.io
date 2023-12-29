@@ -1,5 +1,6 @@
 ---
 title: "Pause, Pivot and Problem-Solve"
+layout: post
 date: 2023-07-09 04:03:07.000000000 -05:00
 description: "The past few months have given me pause to focus on other aspects of my life. I've taken a break from writing to focus on my professional career and family. However, I'm still an author at heart, and I'm excited to share my latest update with you."
 ---

@@ -1,5 +1,6 @@
 ---
 title: Join Postal Marines
+layout: post
 aliases:
 - join-the-postal-marines-bellicose-is-re-released-390921d0
 date: 2022-09-22 19:01:53.000000000 -05:00

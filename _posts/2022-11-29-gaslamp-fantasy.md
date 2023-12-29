@@ -3,6 +3,7 @@ title: Gaslamp Fantasy
 aliases:
 - what-is-gaslamp-fantasy-53da080c
 date: 2022-11-29 19:17:42.000000000 -05:00
+layout: post
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
   amet venenatis dolor. Suspendisse eu justo elit. Cras lacinia turpis nulla, nec
   lobortis sem varius eu. Sed viverra turpis malesuada est aliquet, ac laoreet Leo

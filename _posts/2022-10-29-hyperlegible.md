@@ -1,5 +1,6 @@
 ---
 title: Hyperlegible, a Font for the Ages?
+layout: post
 date: 2022-10-29 19:14:12.000000000 -05:00
 description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit
   amet venenatis dolor. Suspendisse eu justo elit. Cras lacinia turpis nulla, nec
