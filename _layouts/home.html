@@ -4,6 +4,34 @@ layout: default
 {% include biography.html %}
 <div class="mb-12"></div>
 
+<section class="mb-20"
+  style="background: url(/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2.png) center right; background-size: cover;">
+  <div
+    class="relative flex w-full overflow-x-auto shadow-inner gap-6 snap-x snap-mandatory p-14 xbg-indigo-200/20 text-white"
+    style="text-shadow: 1px 1px 1px #000">
+    <div class="snap-center shrink-0">
+      <div class="w-4 shrink-0 sm:w-48"></div>
+    </div>
+    {%- for book in site.books %}
+    <div class="snap-center shrink-0 first:pl-8 last:pr-8">
+      <a href="{{ book.url }}" class="rounded ">
+        {% if book.cover_image %}
+        <img src="/assets/images/covers/{{  book.cover_image }}" alt="{{ book.title }}"
+          class="h-[360px] w-[240px] m-4 rounded shadow-xl" />
+        {% else %}
+        <img src="{{  'https://via.placeholder.com/1200x1800' }}" alt="{{ book.title }}"
+          class="h-[360px] w-[240px] m-4 rounded shadow-xl" />
+        {% endif %}
+        <h3 class="h3 text-center">{{ book.title }}</h3>
+      </a>
+    </div>
+    {%- endfor %}
+    <div class="snap-center shrink-0">
+      <div class="w-4 shrink-0 sm:w-48"></div>
+    </div>
+  </div>
+</section>
+
 {% for post in site.posts %}
 <article class='post-card'>
   <header>
