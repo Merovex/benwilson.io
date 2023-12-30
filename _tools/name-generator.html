@@ -1,0 +1,24 @@
+---
+layout: tool
+title: Name Generator
+---
+<script type="module" src="/assets/controllers/haiku_controller.js"></script>
+<article class='text-center'>
+  <aside class="prosed text-left">
+    <p>
+      This name generator uses the "haiku" approach popularized by Heroku. Because I wanted to create terms using
+      Esperanto, I included a translation. There are 98 adjectives and 103 nouns, creating now fewer than 17
+      permutations; or now fewer than 34 permutations when including the number range from 1000 to 9999.
+    </p>
+  </aside>
+  <div data-controller="haiku">
+    <div id="terms" data-haiku-target="terms"
+      class=" my-8 font-semibold transition ease-in-out delay-150 duration-350 opacity-100">
+      <div class='my-2 text-2xl' id="heroku" data-haiku-target="heroku">&nbsp;</div>
+      <div class='my-2 text-4xl' id="heroko" data-haiku-target="heroko">&nbsp;</div>
+      <div class='my-2 text-2xl font-medium' id='shavian' data-haiku-target="shavian">&nbsp;</div>
+    </div>
+    <button class='border px-4 py-1 rounded-full ring-2 ring-primary-500 hover:bg-primary-300 hover:text-black'
+      data-action="click->haiku#generate">Generate Haiku</button>
+  </div>
+</article>

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --calgraph-1: #FF0000;
+}
+
 body {
   /* font-size: 18px; */
   @apply bg-gray-50/20 text-gray-800;
@@ -94,4 +98,155 @@ h1 {
 .subscription_form button {
   @apply bg-gray-200 dark:bg-gray-600 rounded-r-full px-4 py-2;
   @apply border border-l-0 border-gray-300 dark:border-gray-500;
+}
+.bg-base-300 {
+  @apply bg-gray-300;
+  @apply dark:bg-gray-700;
+}
+.form-select {
+  @apply mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6;
+  @apply bg-gray-50/[0.15] dark:ring-white/10 dark:bg-gray-700 dark:text-gray-50 dark:placeholder-gray-300/50 dark:focus:ring-primary-500;
+}
+.form-input {
+  @apply block w-full rounded-md border-0 bg-base-300 py-1.5 px-2 dark:text-gray-50 shadow-sm;
+  @apply ring-1 ring-inset ring-gray-400 dark:ring-white/10;
+  @apply placeholder-gray-500;
+  @apply focus:ring-2 focus:ring-inset focus:ring-indigo-500;
+
+  &[disabled],
+  &[readonly] {
+    @apply bg-gray-200 dark:bg-gray-600;
+  }
+
+  &.error {
+    @apply border-red-300 dark:border-red-600;
+  }
+}
+.form-control-lg {
+  @apply text-xl my-2;
+  @apply block w-full rounded-md border-0 px-4 py-4 text-gray-900 shadow-sm sm:leading-6;
+  @apply ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-600 dark:focus:ring-primary-500;
+  @apply dark:bg-gray-700 dark:ring-gray-600 placeholder:text-gray-400 dark:placeholder-gray-300/50 dark:text-gray-50 ;
+
+  &[disabled],
+  &[readonly] {
+    @apply bg-gray-200 dark:bg-gray-600;
+  }
+
+  &.error {
+    @apply ring-red-300 dark:ring-red-600;
+  }
+}
+#clock-gradient {}
+
+svg#clock {
+  height: auto;
+  max-height: 90vh;
+  width: 100%;
+}
+
+.bgDot {
+  stroke: none;
+}
+
+.clockCircle {
+  fill: none;
+  stroke: #2a2a2a;
+}
+
+.clockArc {
+  fill: none;
+  stroke: hsl(200, 60%, 60%);
+}
+
+.clockDot {
+  fill: hsl(200, 80%, 85%);
+}
+
+.caption {
+  fill: hsl(200, 60%, 95%);
+}
+
+.dayText {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.daysText,
+.weatherText {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.dateText,
+.tempText {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.timeText {
+  line-height: 1;
+  font-weight: 500;
+}
+
+.highlight {
+  transition: background-color 1.5s ease-in-out;
+}
+.heatmap {
+  @apply mx-auto bg-gray-50 dark:bg-gray-800
+}
+
+.calgraph-text {
+  @apply font-sans text-xs dark:fill-gray-100/50 fill-gray-800;
+}
+
+.calgraph-text-bold {
+  @apply font-sans text-xs dark:fill-gray-100 fill-gray-600;
+}
+
+.calgraph-1 {
+  @apply fill-gray-500/[.15] stroke-gray-300/50 dark:stroke-gray-500/25;
+}
+
+.calgraph-2 {
+  @apply fill-primary-300 dark:fill-heatmap-400/[.50] stroke-gray-500/[.15]
+}
+
+.calgraph-3 {
+  @apply fill-primary-400 dark:fill-heatmap-400/[.60] stroke-gray-500/[.15]
+}
+
+.calgraph-4 {
+  @apply fill-primary-500 dark:fill-heatmap-400/[.70] stroke-gray-500/[.15]
+}
+
+.calgraph-5 {
+  @apply fill-primary-700 dark:fill-heatmap-400 stroke-gray-500/[.15]
+}
+
+.year-button.active {
+  @apply btn-primary;
+}
+
+.year-button {
+  @apply btn btn-white btn-small my-1;
+}
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2;
+
+}
+.btn-primary {
+  @apply bg-primary-500 hover:bg-primary-600 text-white;
+}
+.btn-white {
+  @apply bg-white hover:bg-gray-50 text-gray-700;
+}
+.btn-small {
+  @apply text-xs;
+  color: 
+}
+.btn-wordcount {
+  @apply inline-flex items-center justify-center text-sm border rounded-lg shadow py-1 px-2;
+  @apply hover:bg-primary-700 hover:text-white;
+  @apply hover:dark:bg-primary-500 hover:dark:text-white;
 }

@@ -1,0 +1,170 @@
+---
+layout: tool
+title: Travel Calculator
+---
+<script type="module" src="/assets/controllers/travel_calculator_controller.js"></script>
+<article data-controller="travel-calculator" class="w-prose">
+  <section class="p-4 space-y-2">
+    <aside class="mb-4 prosed md:prose-lg">
+      <p>
+        This calculator gives travel time (in human terms) with constant acceleration and deceleration.
+        Assumes the initial and final velocity is zero meters-per-second.
+      </p>
+      <p>Works well with <a href="/tools/terradoma-map/">Terradoma Map</a>.</p>
+    </aside>
+    <div class="flexed-row">
+      <label class="flex-1" for="planet_size">Planet Size:</label>
+      <div class="flex-1">
+        <select name="planet_size" id="planet_size" class="form-select"
+          data-action="change->travel-calculator#setDistanceFromPlanetSize" data-travel-calculator-target="planetSize">
+          <option value="200">0 - Asteroid / Planetary Belt / Debris</option>
+          <option value="1600">1 - Small </option>
+          <option value="3200">2 - Small (e.g. Luna)</option>
+          <option value="4800">3 - Small (e.g. Mercury)</option>
+          <option value="6400">4 - Medium (e.g. Mars)</option>
+          <option value="8000">5 - Medium </option>
+          <option selected="selected" value="9600">6 - Medium </option>
+          <option value="12200">7 - Large </option>
+          <option value="13800">8 - Large (e.g Venus/Terra) </option>
+          <option value="14400">9 - Large </option>
+          <option value="16000">A - Huge </option>
+          <option value="17600">B - Huge </option>
+          <option value="19200">C - Huge </option>
+          <option value="20800">D - Huge </option>
+          <option value="22400">E - Huge </option>
+          <option value="24000">F - Huge </option>
+          <option disabled="disabled" value="0">──────────</option>
+          <option value="20000">L - Small Gas Giant</option>
+          <option value="30000">M - Small Gas Giant (e.g. Neptune)</option>
+          <option value="40000">N - Small Gas Giant</option>
+          <option value="50000">P - Small Gas Giant</option>
+          <option value="60000">R - Small Gas Giant</option>
+          <option value="70000">S - Small Gas Giant (e.g. Saturn)</option>
+          <option value="80000">T - Large Gas Giant</option>
+          <option value="90000">U - Large Gas Giant(e.g. Jupiter)</option>
+          <option value="125000">U - Large Gas Giant</option>
+          <option value="180000">V - Large Gas Giant</option>
+          <option value="220000">W - Large Gas Giant</option>
+          <option value="250000">X - Large Gas Giant</option>
+        </select>
+
+        <p class="text-sm opacity-50 help-text">Converts planet code to distance.</p>
+      </div>
+    </div>
+
+    <div class="flexed-row">
+      <label class="flex-1" for="distance">Distance (km):</label>
+      <div class="flex-1">
+        <input type="number" name="distance" id="distance" value="1000000"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-travel-calculator-target="distance" data-action="change->travel-calculator#setDistanceFromKM">
+      </div>
+    </div>
+    <div class="flexed-row">
+      <label class="flex-1" for="distanceAU">Distance (AU):</label>
+      <div class="flex-1">
+        <input type="number" name="distanceAU" id="distanceAU" value="0"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-travel-calculator-target="distanceAU" data-action="change->travel-calculator#setDistanceFromAU">
+      </div>
+    </div>
+    <div class="hidden space-y-2">
+      <label class="flex-1" for="travel_time">Travel Time (minutes):</label>
+      <div class="flex-1">
+        <input type="number" name="travel_time" id="travel_time" value="0"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-travel-calculator-target="travelTime"
+          data-action="change->travel-calculator#calcDistanceFromAcceleration">
+        <input class="form-input w-full" name="travel_time" id="travel_time" data-travel-calculator-target="travel_time"
+          type="number" value="1" min="1" max="9" data-action="change->travel-calculator#calcDistanceFromAcceleration">
+      </div>
+    </div>
+    <div class="flexed-row">
+      <label class="flex-1" for="acceleration">Acceleration (G's):</label>
+      <div class="flex-1">
+        <input type="number" name="acceleration" id="acceleration" value="1"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-min="1.0e-06" data-max="9" data-travel-calculator-target="acceleration"
+          data-action="change->travel-calculator#calculate">
+      </div>
+    </div>
+    <div class="flexed-row">
+      <label class="flex-1" for="spaceshipMass">Mass (tons):</label>
+      <div class="flex-1">
+        <input type="number" name="spaceshipMass" id="spaceshipMass" value="200"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          min="1.0e-06" max="9" data-travel-calculator-target="spaceshipMass"
+          data-action="change->travel-calculator#calculate">
+      </div>
+    </div>
+    <div class="flexed-row">
+      <label class="flex-1" for="fuel_conversion_rate">Drive Type:</label>
+      <select name="fuelConversionRate" id="fuelConversionRate"
+        class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 appearance-none flex-1"
+        data-action="change->travel-calculator#calculate" data-travel-calculator-target="fuelConversionRate">
+        <option selected="selected" value="0.00125">HEPlaR</option>
+        <option value="0.0025">M-Drive / Thruster Plates</option>
+      </select>
+    </div>
+
+    <div class="flex justify-center hidden">
+      <label for="" class="flex cursor-pointer items-right">
+        <div class="px-2">No Deceleration</div>
+        <!-- toggle -->
+        <div class="relative">
+          <input id="noDeceleration" data-travel-calculator-target="noDeceleration" type="checkbox" class="hidden">
+          <!-- path -->
+          <div class="h-5 rounded-full shadow-inner bg-shade toggle-path w-9"></div>
+          <!-- crcle -->
+          <div class="absolute inset-y-0 left-0 w-3.5 h-3.5 rounded-full shadow toggle-circle bg-grey-800"></div>
+        </div>
+      </label>
+    </div>
+  </section>
+  <table class="table-fixed w-prose">
+    <tbody>
+      <tr>
+        <th scope="row" class="text-right py-2 w-56">Travel time:</th>
+        <td colspan="2" class="text-center"><strong id="travelTimeDmhs" data-travel-calculator-target="travelTimeDmhs">5
+            hours, 37 minutes, 2 seconds <span class="block text-sm opacity-60 hover:opacity-100">(0.2.34
+              days.cycles.beats)</span></strong></td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right py-2">Observer time:</th>
+        <td colspan="2" class="text-center"><strong id="observerTime" data-travel-calculator-target="observerTime">5
+            hours, 37 minutes, 2 seconds</strong></td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right w-56 py-2">Maximum Velocity:</th>
+        <td class="text-right px-2"><strong id="maxVelocity" data-travel-calculator-target="maxVelocity">99</strong>
+        </td>
+        <td> km /sec<sup>2</sup></td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right py-2">Fuel consumed:</th>
+        <td class="text-right px-2"><strong id="fuelConsumed" data-travel-calculator-target="fuelConsumed">106</strong>
+        </td>
+        <td> kg</td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right py-2">Power Required:</th>
+        <td class="text-right px-2"><strong id="mwConsumed" data-travel-calculator-target="mwConsumed">0.00</strong>
+        </td>
+        <td> Megawatts</td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right py-2">Gigameters:</th>
+        <td class="text-right px-2"><strong id="distanceGm" data-travel-calculator-target="distanceGm">...</strong>
+        </td>
+        <td> Gigameters</td>
+      </tr>
+      <tr>
+        <th scope="row" class="text-right py-2">Light Seconds:</th>
+        <td class="text-right px-2"><strong id="distanceLs"
+            data-travel-calculator-target="distanceLs">...</strong>(<span data-travel-calculator-target="mls"></span>)
+        </td>
+        <td> seconds</td>
+      </tr>
+    </tbody>
+  </table>
+</article>

@@ -6,13 +6,17 @@ module.exports = {
     '_includes/**/*.html',
     '_includes/**/*.html',
     '_layouts/**/*.html',
+    '_posts/**/*.md',
+    '_pages/**/*.md',
+    '_tools/**/*.html',
     '*.{markdown,md,html}'
   ],
   theme: {
     extend: {
       colors: {
         primary: colors.indigo,
-        gray: colors.gray
+        gray: colors.gray,
+        heatmap: colors.emerald,
       },
       fontFamily: {
         sans: ['Atkinson Hyperlegible', ...defaultTheme.fontFamily.sans],
@@ -22,5 +26,9 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require("@tailwindcss/forms")({
+      // strategy: 'base', // only generate global styles
+      strategy: 'class', // only generate classes
+    }),
   ],
 }

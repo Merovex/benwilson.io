@@ -1,0 +1,52 @@
+---
+layout: tool
+title: UWP Translator
+---
+<script type="module" src="/assets/controllers/uwp_translator_controller.js"></script>
+<article id='uwp-translator' data-controller='uwp-translator'>
+  <div class='p-4 mb-12 card'>
+    <div class='my-8 md:flex'>
+      <div class='flex-initial w-1/3'>
+        <label for='n'>System Name:</label>
+      </div>
+      <div class='flex-initial w-2/3'>
+        <input type='text' class='w-full px-2 py-1 text-gray-900 border rounded border-shade' id='n'
+          placeholder='Enter System Name (e.g. Regina)' data-uwp-translator-target='name'
+          data-action='keyup->uwp-translator#translate'>
+      </div>
+    </div>
+
+    <div class='md:flex'>
+      <div class='flex-initial w-1/3'>
+        <label for='uwp'>Universal World Profile:</label>
+      </div>
+      <div class='flex-initial w-2/3'>
+        <input type='text' class='w-full px-2 py-1 text-gray-900 border rounded border-shade' id='uwp'
+          placeholder='Enter UWP (e.g. C739689-7)' data-uwp-translator-target='uwp'
+          data-action='keyup->uwp-translator#translate' value='B937411-B'>
+        <p class='text-sm text-opacity-80'>The UWP follows the standard 8-character definition (B937411-B), more
+          information
+          provided <a href='http://wiki.travellerrpg.com/Universal_World_Profile'>on the Traveller RPG Wiki</a>.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <section class='w-prose text-lg'>
+    <span class='highlight' data-uwp-translator-target='size'></span>
+    <span class='highlight' data-uwp-translator-target='port'></span>
+    <span class='highlight' data-uwp-translator-target='atmos'></span>
+    <span class='highlight' data-uwp-translator-target='hydro'></span>
+    <span class='highlight' data-uwp-translator-target='popx'></span>
+    <span class='highlight' data-uwp-translator-target='govt'></span>
+    <span class='highlight' data-uwp-translator-target='law'></span>
+    <span class='highlight' data-uwp-translator-target='tech'></span>
+  </section>
+
+  <section class='prosed'>
+    <h3>UWP <span id='code' data-uwp-translator-target='code'>HERE</span> Defined:</h3>
+    <p id='output' data-uwp-translator-target='output' class='transition ease-in-out delay-100 duration-700'>Translation
+      will be generated here...</p>
+  </section>
+
+</article>

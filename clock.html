@@ -1,0 +1,193 @@
+---
+layout: blank
+---
+<div id='clock-gradient' class="h-screen">
+  <svg viewBox="0 0 900 500" width="100%" height="100%">
+    <defs>
+      <pattern id="dotPattern" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
+        <circle class="bgDot" cx="2" cy="2" r="1" />
+      </pattern>
+      <radialGradient id="backHoleBelowClock" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:0.7" />
+        <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:0" />
+      </radialGradient>
+      <radialGradient id="blackVignette" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+        <stop offset="40%" style="stop-color:rgb(0,0,0);stop-opacity:0" />
+        <stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />
+      </radialGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="1.2" result="coloredBlur" />
+        <feMerge>
+          <feMergeNode in="coloredBlur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+      <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="shadow" />
+        <feOffset dx="1" dy="1" />
+        <feMerge>
+          <feMergeNode />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Background  -->
+    <rect x="0" y="0" width="100%" height="100%" style="fill: url(#dotPattern);" />
+    <circle cx="450" cy="250" r="110" fill="url(#backHoleBelowClock)" />
+    <circle cx="450" cy="250" r="550" fill="url(#blackVignette)" />
+
+    <!-- Minute Hand -->
+    <circle class="clockCircle minute" cx="450" cy="250" r="120" stroke-width="8" />
+    <path id="arcMinute" class="clockArc minute" stroke-width="8" stroke-linecap="round" filter="url(#glow)" />
+    <circle id="minuteDot" class="clockDot" r="6" filter="url(#glow)" />
+
+    <!-- Hour Hand -->
+    <circle class="clockCircle hour" cx="450" cy="250" r="150" stroke-width="10" />
+    <path id="arcHour" class="clockArc hour" stroke-width="10" stroke-linecap="round" filter="url(#glow)" />
+    <circle id="hourDot" class="clockDot" r="8" filter="url(#glow)" />
+
+    <!-- Time -->
+    <text id="time" class="caption text-7xl shadow timeText" x="450" y="250" stroke-width="1" text-anchor="middle"
+      alignment-baseline="middle" filter="url(#shadow)"></text>
+
+    <!-- DoW & Date -->
+    <text id="day" class="caption text-2xl" x="270" y="210" stroke-width="0" text-anchor="end"
+      alignment-baseline="middle" filter="url(#shadow)"></text>
+    <text id="date" class="caption text-4xl" x="270" y="250" stroke-width="0" text-anchor="end"
+      alignment-baseline="middle" filter="url(#shadow)"></text>
+
+    <!-- WoY and DoY -->
+    <text id="woy" class="caption text-2xl" x="270" y="290" stroke-width="0" text-anchor="end"
+      alignment-baseline="middle" filter="url(#shadow)"></text>
+
+    <!-- Weather -->
+    <text id='temp' class='caption text-4xl' x="630" y="250" alignment-baseline="middle" filter="url(#shadow)">
+      ---°</text>
+    <text id='hi_lo' class='caption text-2xl' x="630" y="290" alignment-baseline="middle" filter="url(#shadow)">H:
+      ---° L:
+      ---°</text>
+    <text id="weather" class="caption text-2xl" style='text-transform: capitalize' x="630" y="210" stroke-width="0"
+      text-anchor="start" alignment-baseline="middle" filter="url(#shadow)"></text>
+    <text id="suntime" class="caption text-xl" x="450" y="300" stroke-width="0" text-anchor="middle"
+      alignment-baseline="middle" filter="url(#shadow)"></text>
+  </svg>
+
+</div>
+<script>
+  function $(selector) {
+    return document.querySelector(selector);
+  }
+  function epochTo24H(sec) {
+    const date = new Date(sec * 1000);
+    return date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })
+  }
+
+  const key = '0c1b22b3a5992ff4ca4d1e9947ae4b68';
+  // const key = process.env.WEATHER_KEY;
+
+  // get openweather information using api key
+  const getWeather = async (showAnyway) => {
+    const now = new Date()
+    const minute = (now.getMinutes() % 15 == 0) ? true : false
+    console.log(showAnyway)
+
+    if (minute || showAnyway) {
+      console.log(`Getting weather at ${now}`)
+      // 38.9381741" N, 77.2218718" W
+      const lat = 38.9382
+      const lon = -77.2218
+      // ?lat=33.44&lon=-94.04&exclude=hourly,daily&appid={API key}
+      const base = 'https://api.openweathermap.org/data/3.0/onecall';
+      const query = `?lat=${lat}&lon=${lon}&units=imperial&appid=${key}`;
+
+      const response = await fetch(base + query);
+      const data = await response.json();
+      // console.log(data)
+      const hi = parseInt(data.daily[0].temp.max) || '---';
+      const lo = parseInt(data.daily[0].temp.min) || '---';
+      const temp = parseInt(data.current.temp) || '---';
+      const weather = data.current.weather[0].description || '---';
+      // const location = data.name || '---';
+      const location = '';
+
+      $('#temp').textContent = `${temp}°`;
+      $('#weather').textContent = `${weather}`;
+      $('#hi_lo').textContent = `High: ${hi}° Low: ${lo}°`;
+      $('#suntime').textContent = `☀ ${epochTo24H(data.current.sunrise)} // ${epochTo24H(data.current.sunset)}`;
+    }
+  };
+  Date.prototype.getWeek = function () {
+    let onejan = new Date(this.getFullYear(), 0, 1);
+    return Math.floor((((this - onejan) / 86400000) + onejan.getDay() + 1) / 7);
+  }
+  Date.prototype.getDayOfYear = function () {
+    let start = new Date(this.getFullYear(), 0, 0);
+    let diff = this - start;
+    let oneDay = 1000 * 60 * 60 * 24;
+    let day = Math.floor(diff / oneDay);
+    return day;
+  }
+
+  const polarToCartesian = function (centerX, centerY, radius, angleInDegrees) {
+    var angleInRadians;
+    angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+    return {
+      x: centerX + radius * Math.cos(angleInRadians),
+      y: centerY + radius * Math.sin(angleInRadians)
+    };
+  };
+
+  const describeArc = function (x, y, radius, startAngle, endAngle) {
+    var arcSweep, end, start;
+    start = polarToCartesian(x, y, radius, endAngle);
+    end = polarToCartesian(x, y, radius, startAngle);
+    arcSweep = endAngle - startAngle <= 180 ? '0' : '1';
+    return ['M', start.x, start.y, 'A', radius, radius, 0, arcSweep, 0, end.x, end.y].join(' ');
+  };
+  const setClockDots = function (target, radius, arc) {
+    dot = $(target);
+    pos = polarToCartesian(450, 250, radius, arc);
+    dot.setAttribute("cx", pos.x);
+    dot.setAttribute("cy", pos.y);
+  }
+
+  const updateTime = function () {
+    const date = new Date();
+    const timeDiff = (new Date("2028-08-23").getTime() - date.getTime()) / (1000 * 3600 * 24 * 7);
+
+    // Set the Text Captions
+    $("#time").textContent = date.toLocaleString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+    $("#date").textContent = date.toLocaleDateString('default', { month: 'long', day: 'numeric' });
+    $("#day").textContent = date.toLocaleDateString('default', { weekday: 'long' });
+    $("#woy").textContent = `${date.getWeek()}w ${date.getDayOfYear()} // ${Math.round(timeDiff)}w`;
+
+    // Set the Hue
+    const hue = date.getDayOfYear() + (parseInt((date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()) / 60));
+    $("#time").style.fill = `hsl(${hue}, 60%, 90%)`;
+    $('.bgDot').style.fill = `hsl(${hue}, 30%, 10%, 100%)`;
+    $('.timeText').style.fill = `hsl(${hue}, 60%, 90%)`;
+    $('.caption').style.fill = `hsl(${hue}, 60%, 95%)`;
+    $('#arcHour').style.stroke = `hsl(${hue}, 50%, 50%)`;
+    $('#arcMinute').style.stroke = `hsl(${hue}, 50%, 50%)`;
+    $('#hourDot').style.fill = `hsl(${hue}, 80%, 80%)`;
+    $('#minuteDot').style.fill = `hsl(${hue}, 80%, 80%)`;
+    $('#clock-gradient').style.background = `linear-gradient(130deg, hsl(${hue + 0}, 11%, 20%), hsl(${hue + 0}, 50%, 20%)`;
+
+    // Set the Arcs
+    const offset = -120; // subtract 180 to start at 6 o'clock
+    const arcLength = 240; // 360 degrees
+    const hourArc = (date.getHours() * 60 + date.getMinutes()) / (24 * 60) * arcLength;
+    const minArc = date.getMinutes() / 60 * arcLength; // percentage times arcLength in degrees
+
+    setClockDots('#minuteDot', 120, minArc + offset);
+    $('#arcMinute').setAttribute('d', describeArc(450, 250, 120, offset, minArc + offset));
+    setClockDots('#hourDot', 150, hourArc + offset);
+    $('#arcHour').setAttribute('d', describeArc(450, 250, 150, offset, hourArc + offset));
+
+  }
+  setInterval(updateTime, 1000);
+  getWeather(true);
+  setInterval(function () {
+    getWeather(false);
+  }, 1 * 60 * 1000);
+</script>

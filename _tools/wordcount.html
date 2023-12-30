@@ -1,0 +1,340 @@
+---
+layout: tool
+title: Word Count
+---
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+<script src="https://unpkg.com/cal-heatmap/dist/plugins/LegendLite.min.js"></script>
+<script src="https://unpkg.com/cal-heatmap/dist/plugins/CalendarLabel.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+<section class="flex flex-row space-x-1 my-16">
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 rounded-l-xl">
+    <span id="last_week_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Last Week</span>
+    <div id="lastWeekGraph"></div>
+  </div>
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2">
+    <span id="current_week_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Current Week</span>
+    <div id="currentWeekGraph"></div>
+  </div>
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 rounded-r-xl">
+    <span id="last_365d_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Last 365 Days</span>
+    <div id="last365dGraph"></div>
+  </div>
+</section>
+<section class="mt-16">
+  <h2 class="text-3xl font-bold">Calendar Graph</h2>
+  <div id="cal-heatmap" class="xz-10"></div>
+  <div>
+    <div id="ex-ghDay" className="margin-bottom--md"></div>
+    <div class="text-xs items-center justify-end flex space-x-2" id="Legend">
+      <span>Less</span>
+      <div id="ex-ghDay-legend"></div>
+      <span>More</span>
+    </div>
+    <div class="flex justify-center space-x-2">
+      <span id="fastReverseButton" title="Go back 12 months" class="btn-wordcount" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
+          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M21 5v14l-8 -7z" />
+          <path d="M10 5v14l-8 -7z" />
+        </svg>
+      </span>
+      <span id="reverseButton" title="Go back 1 month" class="btn-wordcount" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-180 size-4" width="24" height="24" viewBox="0 0 24 24"
+          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7 4v16l13 -8z" />
+        </svg>
+      </span>
+      <span id="forwardButton" title="Go forward 1 month" class="btn-wordcount" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
+          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7 4v16l13 -8z" />
+        </svg>
+      </span>
+      <span id="fastForwardButton" title="Go forward 12 months" class="btn-wordcount" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
+          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M3 5v14l8 -7z" />
+          <path d="M14 5v14l8 -7z" />
+        </svg>
+      </span>
+    </div>
+  </div>
+</section>
+
+<script>
+  let cal;
+  let last_365d_count = [];
+  // populate last_365d_count with 0 values for each day
+
+  const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
+  const startOfLastWeek = moment().subtract(1, 'week').startOf('week').format('YYYY-MM-DD');
+  const endOfLastWeek = moment().startOf('week').format('YYYY-MM-DD');
+  const startOf365DaysAgo = moment().subtract(365, 'days').format('YYYY-MM-DD');
+
+  let last_week_count = [];
+  let current_week_count = [];
+  const fillMissingDays = (data, period) => {
+    let filledData = [];
+    for (let i = 0; i < period; i++) {
+      let date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+      let foundEntry = data.find(entry => entry.date === date);
+      filledData.push(foundEntry || { date: date, value: 0 });
+    }
+    return filledData;
+  };
+  const groupByWeek = (data) => {
+    const weeklyTotals = {};
+
+    data.forEach(day => {
+      const dayDate = moment(day.date);
+      // const weekStart = dayDate.startOf('isoWeek');
+      const key = moment(day.date).startOf('isoWeek').format('YYYY-MM-DD');
+      weeklyTotals[key] = (weeklyTotals[key] || 0) + day.value;
+    });
+
+    return Object.keys(weeklyTotals).map(key => {
+      return {
+        date: key,
+        value: weeklyTotals[key]
+      };
+    });
+  };
+
+
+  const loadData = async () => {
+    days = {};
+    try {
+      const response = await fetch('/assets/wordcount.json');
+      if (!response.ok) {
+        throw new Error("Network response was not ok.");
+      }
+      const entries = await response.json();
+      entries.forEach(entry => {
+        if (!days[entry.date]) { days[entry.date] = { count: 0, level: entry.level }; } // Initialize day
+        days[entry.date].count += (entry.count || 0); // Ensure entry.count is a number
+        // if day is in the current week, add to current_week_count
+        // Categorize entry based on the date
+        if (entry.date >= startOfWeek) {
+          current_week_count.push({ date: entry.date, value: entry.count });
+          last_365d_count.push({ date: entry.date, value: entry.count });
+        }
+        else if (entry.date >= startOfLastWeek && entry.date < endOfLastWeek) {
+          last_week_count.push({ date: entry.date, value: entry.count });
+          last_365d_count.push({ date: entry.date, value: entry.count });
+        }
+        else if (entry.date >= startOf365DaysAgo) {
+          last_365d_count.push({ date: entry.date, value: entry.count });
+        }
+        document.getElementById('last_365d_count').innerHTML = last_365d_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+        document.getElementById('last_week_count').innerHTML = last_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+        document.getElementById('current_week_count').innerHTML = current_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+      })
+
+      let line_graph_data_365 = fillMissingDays(last_365d_count, 365);
+      let line_graph_data_week = fillMissingDays(last_week_count, 7);
+      let line_graph_data_current_week = fillMissingDays(current_week_count, 7);
+
+      lineGraph(groupByWeek(line_graph_data_365), '#last365dGraph');
+      lineGraph(line_graph_data_week, '#lastWeekGraph');
+      lineGraph(line_graph_data_current_week, '#currentWeekGraph');
+
+      return Object.entries(days).map(([date, data]) => {
+        return { date: date, count: data.count };
+      });
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  }
+  const lineGraph = (data, target) => {
+    // sort data to ensure it's in chronological order
+    const parsedData = data.map(d => ({
+      date: new Date(d.date), // Parse date into a Date object
+      value: +d.value         // Ensure value is a number
+    })).sort((a, b) => a.date - b.date); // Sort by date
+
+    // Set the dimensions of the graph
+    const margin = { top: 10, right: 10, bottom: 10, left: 10 },
+      width = 220 - margin.left - margin.right, // Adjusted Width
+      height = 70 - margin.top - margin.bottom; // Adjusted Height
+
+    // Append the SVG object to the div#lineGraph
+    const svg = d3.select(target)
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Add X scale
+    const x = d3.scaleTime()
+      .domain(d3.extent(parsedData, d => d.date))  // Use parsedData here
+      .range([0, width]);
+
+    // Add Y scale
+    const y = d3.scaleLinear()
+      .domain([0, d3.max(parsedData, d => d.value)])  // Use parsedData here
+      .range([height, 0]);
+
+    svg.append("path")
+      .datum(parsedData)
+      .attr("class", "fill-primary-500/80")
+      .attr("fill-opacity", .3)
+      .attr("stroke", "none")
+      .attr("d", d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.value))
+        .curve(d3.curveBasis)
+      );
+
+    // Add the line
+    svg.append("path")
+      .datum(parsedData)  // Use parsedData
+      .attr("fill", "none")
+      .attr("class", "stroke-primary-500 stroke-[3px]")
+      .attr("d", d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.value))
+        .curve(d3.curveBasis)
+      );
+  }
+  getDisplayMode = () => {
+    let mode = 'light'; // Default to light mode
+
+    // Check if matchMedia and prefers-color-scheme are supported
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      mode = 'dark'; // User prefers dark mode
+    }
+
+    // Optionally, you can listen for changes and update the mode variable accordingly
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+      mode = event.matches ? 'dark' : 'light';
+      console.log('Mode changed to:', mode); // Do something when the mode changes
+    });
+
+    return mode;
+  }
+
+  (async () => {
+    const colorRange = {
+      'dark': ['#0e4429', '#006d32', '#26a641', '#39d353'],
+      'light': ['#9be9a8', '#40c463', '#30a14e', '#216e39'],
+    }
+    try {
+      const entries = await loadData();
+
+      // Get unique years from entries:
+      const years = [...new Set(entries.map(entry => entry.date.slice(0, 4)))];
+
+      // Year IDs are in the form y_YYYY where YYYY is the year
+      const yearIds = years.map(year => `y_${year}`);
+      today = new Date();
+
+      cal = new CalHeatmap();
+      cal.paint({
+        data: { source: entries, x: 'date', y: 'count' },
+        date: { start: new Date(parseInt(years[years.length - 1]) - 1, today.getMonth() + 1, today.getDate()) },
+        // range: (parseInt(years[years.length - 1]) - parseInt(years[0]) + 1) * 12,
+        range: 12,
+        // scale: { color: { type: 'linear', scheme: 'PRGn', domain: [-500, 1250] } },
+        scale: {
+          color: {
+            type: 'threshold',
+            range: colorRange[getDisplayMode()],
+            domain: [500, 1000, 1250],
+          },
+        },
+        domain: {
+          type: 'month',
+          // gutter: 1,
+          label: { text: "MMM 'YY", textAlign: 'start', position: 'top' },
+        },
+        subDomain: { type: 'ghDay', radius: 2, width: 11, height: 11, gutter: 4 },
+      },
+        [
+          [
+            Tooltip,
+            {
+              text: function (date, value, dayjsDate) {
+                return (
+                  (value ? value : 'No') +
+                  ' words on ' +
+                  dayjsDate.format('dddd, MMMM D, YYYY')
+                );
+              },
+            },
+          ],
+          [
+            LegendLite,
+            {
+              includeBlank: true,
+              itemSelector: '#ex-ghDay-legend',
+              radius: 2,
+              width: 11,
+              height: 11,
+              gutter: 4,
+            },
+          ],
+          [
+            CalendarLabel,
+            {
+              position: 'left',
+              key: 'left',
+              text: () => ['', 'Mon', '', 'Wed', '', 'Fri', ''],
+              textAlign: 'end',
+              width: 30,
+              padding: [25, 5, 0, 0],
+            },
+          ],
+        ]);
+
+      lineGraph([
+        { date: new Date(2020, 0, 1), count: 30 },
+        { date: new Date(2020, 1, 1), count: 50 },
+        // Add more data points here...
+        { date: new Date(2020, 11, 1), count: 80 }
+      ],
+        '#lineGraph'
+      );
+    } catch (error) {
+      console.error("Error handling the entries: ", error);
+    }
+  })();
+
+  // Cal-Heatmap navigation buttons
+  document.addEventListener('DOMContentLoaded', function () {
+    var fastReverseButton = document.getElementById('fastReverseButton');
+    fastReverseButton.addEventListener('click', function (e) {
+      cal.previous(12);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    var reverseButton = document.getElementById('reverseButton');
+    reverseButton.addEventListener('click', function (e) {
+      cal.previous(1);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    var forwardButton = document.getElementById('forwardButton');
+    forwardButton.addEventListener('click', function (e) {
+      cal.next(1);
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    var fastForwardButton = document.getElementById('fastForwardButton');
+    fastForwardButton.addEventListener('click', function (e) {
+      cal.next(12);
+    });
+  });
+
+</script>

@@ -15,7 +15,6 @@
   <meta name="theme-color" content="#ffffff">
 
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/cal-heatmap.css">
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,18 +23,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Fjalla+One&display=swap"
     rel="stylesheet">
-
   <!-- <script type="module" src="/assets/controllers/uwp_translator_controller.js"></script> -->
 </head>
 
-<body class="min-h-screen flex flex-col">
-  {% include header.html %}
-  <main class="flex-1">
-    {{ content }}
-  </main>
-  <footer class="text-sm text-subtle text-center pb-4">
-    Copyright &copy; Ben Wilson. All Rights Reserved.
-  </footer>
+<body class="min-h-screen">
+  {{ content }}
 </body>
 <!-- <script type="module" src="/assets/main.js"></script> -->
 

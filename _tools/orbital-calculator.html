@@ -1,0 +1,201 @@
+---
+title: Orbital Calculator
+date: 2021-12-21T05:47:27+05:00
+layout: tool
+---
+<script type="module" src="/assets/controllers/orbital_calculator_controller.js"></script>
+
+<article class="" data-controller="orbital-calculator">
+  <section class="p-4 space-y-2 toolkit w-prose">
+    <select name="planet_size" id="planet_size"
+      class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 appearance-none "
+      data-action="change->orbital-calculator#calculate" data-orbital-calculator-target="planetSize">
+      <option value="200">0 - Asteroid / Planetary Belt / Debris</option>
+      <option value="1600">1 - Small </option>
+      <option value="3200">2 - Small (e.g. Luna)</option>
+      <option value="4800">3 - Small (e.g. Mercury)</option>
+      <option value="6400">4 - Medium (e.g. Mars)</option>
+      <option value="8000">5 - Medium </option>
+      <option selected="selected" value="9600">6 - Medium </option>
+      <option value="12200">7 - Large </option>
+      <option value="13800">8 - Large (e.g Venus/Terra) </option>
+      <option value="14400">9 - Large </option>
+      <option value="16000">A - Huge </option>
+      <option value="17600">B - Huge </option>
+      <option value="19200">C - Huge </option>
+      <option value="20800">D - Huge </option>
+      <option value="22400">E - Huge </option>
+      <option value="24000">F - Huge </option>
+      <option disabled="disabled" value="0">──────────</option>
+      <option value="20000">L - Small Gas Giant</option>
+      <option value="30000">M - Small Gas Giant (e.g. Neptune)</option>
+      <option value="40000">N - Small Gas Giant</option>
+      <option value="50000">P - Small Gas Giant</option>
+      <option value="60000">R - Small Gas Giant</option>
+      <option value="70000">S - Small Gas Giant (e.g. Saturn)</option>
+      <option value="80000">T - Large Gas Giant</option>
+      <option value="90000">U - Large Gas Giant(e.g. Jupiter)</option>
+      <option value="125000">U - Large Gas Giant</option>
+      <option value="180000">V - Large Gas Giant</option>
+      <option value="220000">W - Large Gas Giant</option>
+      <option value="250000">X - Large Gas Giant</option>
+    </select>
+    <div class="flex space-y-2">
+      <label class="flex-1" for="rotation_period">Rotational Period: (hours 24h=1d)</label>
+      <div class="flex-1">
+        <input type="text" name="rotation_period" id="rotation_period" value="24"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-orbital-calculator-target="rotationPeriod" data-action="change->orbital-calculator#calculate">
+      </div>
+    </div>
+    <div class="hidden space-y-2">
+      <label class="flex-1" for="gravity">Gravity:</label>
+
+      <input type="text" name="gravity" id="gravity" value="1"
+        class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+        data-orbital-calculator-target="gravity" data-action="change->orbital-calculator#calculate">
+    </div>
+    <div class="flex space-y-2">
+      <label class="flex-1" for="mass">Mass:</label>
+      <div class="flex-1 flex">
+        <input type="text" name="mass" id="mass" value="5.9736"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          data-orbital-calculator-target="mass" data-action="change->orbital-calculator#calculate">
+        <span class="hint inline-block px-2 text-xs">kg in 10<sup>24</sup>. (Earth is 5.9736)</span>
+      </div>
+    </div>
+    <div class="flex space-y-2">
+      <label class="flex-1" for="altitude">Altitude (in Km):</label>
+      <div class="flex-1">
+        <input type="text" name="altitude" id="altitude" value="0" disabled="disabled"
+          data-orbital-calculator-target="altitude" data-action="change->orbital-calculator#calculate">
+      </div>
+    </div>
+    <p>
+      The synchronous orbit planets is calculated using the law of universal gravitation becomes:
+      <code class="block mx-auto text-center">height = √3(G × M × T<sup>2</sup> ÷ 4π<sup>2</sup>) - R</code>
+    </p>
+
+    <ul>
+      <li>h = Height of the artificial satellite</li>
+      <li>G = Constant of gravitation (6.67 × 10<sup>-11</sup>)</li>
+      <li>M = Mass of the planet</li>
+      <li>T = Rotational period of the planet</li>
+      <li>R = Radius of the planet (Uses the Planet Size dropdown)</li>
+    </ul>
+    <p>The geosynchronous orbit (synchronous orbit of the Earth) is
+      at an altitude of 35,796&nbsp;km (≈ 36,000&nbsp;km) and has a
+      semi-major axis of 42,167&nbsp;km.</p>
+  </section>
+
+  <section class="prosed">
+
+    <table class="max-w-5xl mx-auto table-fixed">
+      <thead>
+        <tr>
+          <th>Planets</th>
+          <th>Planets Mass (10<sup>24</sup> kg)</th>
+          <th>Volume (10<sup>12</sup> km<sup>3</sup>) </th>
+          <th>Radius (km) </th>
+          <th>Rotation period (d) </th>
+          <th>Synchronous orbit altitude (km) </th>
+          <th>Synchronous orbit Semi-major axis (km)</th>
+          <th>Satellite speed (km/s)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <th scope="row">Mercury</th>
+          <td class="text-right">0.3302</td>
+          <td class="text-right">0.06083</td>
+          <td class="text-right">2439.74</td>
+          <td class="text-right">1403</td>
+          <td class="text-right">240,025</td>
+          <td class="text-right">242,464</td>
+          <td class="text-right">0.30</td>
+        </tr>
+        <tr>
+          <th scope="row">Venus</th>
+          <td class="text-right">4.8685</td>
+          <td class="text-right">0.92843</td>
+          <td class="text-right">6051.83</td>
+          <td class="text-right">5816</td>
+          <td class="text-right">1,527,832</td>
+          <td class="text-right">1,533,883</td>
+          <td class="text-right">0.46</td>
+        </tr>
+        <tr>
+          <th scope="row">Earth</th>
+          <td class="text-right">5.9736</td>
+          <td class="text-right">1.08321</td>
+          <td class="text-right">6371.01</td>
+          <td class="text-right">24</td>
+          <td class="text-right">35,796</td>
+          <td class="text-right">42,167</td>
+          <td class="text-right">3.07</td>
+        </tr>
+        <tr>
+          <th scope="row">Mars</th>
+          <td class="text-right">0.64185</td>
+          <td class="text-right">0.16318</td>
+          <td class="text-right">3389.95</td>
+          <td class="text-right">24.6</td>
+          <td class="text-right">17,002</td>
+          <td class="text-right">20,392</td>
+          <td class="text-right">1.45</td>
+        </tr>
+        <tr>
+          <th scope="row">Jupiter</th>
+          <td class="text-right">1898.6</td>
+          <td class="text-right">1431.28</td>
+          <td class="text-right">69910.97</td>
+          <td class="text-right">10</td>
+          <td class="text-right">89,811</td>
+          <td class="text-right">159,722</td>
+          <td class="text-right">28.17</td>
+        </tr>
+        <tr>
+          <th scope="row">Saturn</th>
+          <td class="text-right">568.46</td>
+          <td class="text-right">827.13</td>
+          <td class="text-right">58232.00</td>
+          <td class="text-right">10.6</td>
+          <td class="text-right">53,811</td>
+          <td class="text-right">112,043</td>
+          <td class="text-right">18.40</td>
+        </tr>
+        <tr>
+          <th scope="row">Uranus</th>
+          <td class="text-right">86.81</td>
+          <td class="text-right">68.33</td>
+          <td class="text-right">25361.46</td>
+          <td class="text-right">17.2</td>
+          <td class="text-right">57,173</td>
+          <td class="text-right">82,534</td>
+          <td class="text-right">8.38</td>
+        </tr>
+        <tr>
+          <th scope="row">Neptune</th>
+          <td class="text-right">102.43</td>
+          <td class="text-right">62.526</td>
+          <td class="text-right">24622.04</td>
+          <td class="text-right">16</td>
+          <td class="text-right">58,739</td>
+          <td class="text-right">83,361</td>
+          <td class="text-right">9.06</td>
+        </tr>
+        <tr>
+          <th scope="row">Europa</th>
+          <td class="text-right">0.048</td>
+          <td class="text-right">0.01593</td>
+          <td class="text-right">1560.90</td>
+          <td class="text-right">85</td>
+          <td class="text-right">18,134</td>
+          <td class="text-right">19,694</td>
+          <td class="text-right">0.40</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</article>

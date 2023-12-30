@@ -1,0 +1,12 @@
+---
+layout: default
+title: Tools
+---
+
+{% include biography.html %}
+<div class="mb-12"></div>
+<article class="max-w-prose mx-auto">
+  {% for tool in site.tools %}
+  <li><a href='{{tool.url}}'>{{tool.title}}</a></li>
+  {% endfor %}
+</article>

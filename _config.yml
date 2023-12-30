@@ -44,6 +44,10 @@ collections:
     output: true
     permalink: /books/:path/
     layout: book
+  tools:
+    output: true
+    layout: post
+    permalink: /tools/:path/
   posts:
     output: true
     layout: post

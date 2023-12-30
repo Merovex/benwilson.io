@@ -1,0 +1,21 @@
+---
+layout: tool
+title: Word Count
+---
+<script src="https://d3js.org/d3.v7.min.js"></script>
+{% include heatmap.svg %}
+<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
+<script>
+  console.log(CalHeatMap);
+</script>
+<!-- <script type="module" src="/assets/controllers/calendar_graph_controller.js"></script> -->
+
+<div data-controller="calendar-graph" class="border rounded">
+  <span data-calendar-graph-target="terms">Words</span>
+  <div data-calendar-graph-target="graph" class="transition ease-in-out delay-100 duration-700">
+
+  </div>
+  <div id="cal-heatmap">
+    Calendar Graph will be generated here...
+  </div>
+</div>
