@@ -10,18 +10,18 @@ title: Word Count
 <script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-<section class="flex flex-row space-x-1 my-16">
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 rounded-l-xl">
+<section class="md:flex flex-row my-16">
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-l-xl rounded md:rounded-r-none">
     <span id="last_week_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last Week</span>
     <div id="lastWeekGraph"></div>
   </div>
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2">
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] rounded md:rounded-none">
     <span id="current_week_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Current Week</span>
     <div id="currentWeekGraph"></div>
   </div>
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 rounded-r-xl">
+  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
     <span id="last_365d_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last 365 Days</span>
     <div id="last365dGraph"></div>
