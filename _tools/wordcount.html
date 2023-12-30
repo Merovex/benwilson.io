@@ -11,17 +11,19 @@ title: Word Count
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <section class="md:flex flex-row my-16">
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-l-xl rounded md:rounded-r-none">
+  <div
+    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-l-xl rounded md:rounded-r-none">
     <span id="last_week_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last Week</span>
     <div id="lastWeekGraph"></div>
   </div>
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] rounded md:rounded-none">
+  <div class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] rounded md:rounded-none">
     <span id="current_week_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Current Week</span>
     <div id="currentWeekGraph"></div>
   </div>
-  <div class="bg-gray-500/20 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
+  <div
+    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
     <span id="last_365d_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last 365 Days</span>
     <div id="last365dGraph"></div>
@@ -75,15 +77,14 @@ title: Word Count
 <script>
   let cal;
   let last_365d_count = [];
-  // populate last_365d_count with 0 values for each day
+  let last_week_count = [];
+  let current_week_count = [];
 
   const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
   const startOfLastWeek = moment().subtract(1, 'week').startOf('week').format('YYYY-MM-DD');
   const endOfLastWeek = moment().startOf('week').format('YYYY-MM-DD');
   const startOf365DaysAgo = moment().subtract(365, 'days').format('YYYY-MM-DD');
 
-  let last_week_count = [];
-  let current_week_count = [];
   const fillMissingDays = (data, period) => {
     let filledData = [];
     for (let i = 0; i < period; i++) {
@@ -97,8 +98,6 @@ title: Word Count
     const weeklyTotals = {};
 
     data.forEach(day => {
-      const dayDate = moment(day.date);
-      // const weekStart = dayDate.startOf('isoWeek');
       const key = moment(day.date).startOf('isoWeek').format('YYYY-MM-DD');
       weeklyTotals[key] = (weeklyTotals[key] || 0) + day.value;
     });
@@ -171,8 +170,9 @@ title: Word Count
     // Append the SVG object to the div#lineGraph
     const svg = d3.select(target)
       .append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("preserveAspectRatio", "xMinYMin meet") // This will preserve the aspect ratio
+      .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`) // Set the viewBox to the initial width and height
+      .classed("svg-content-responsive", true)
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 

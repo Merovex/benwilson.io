@@ -1079,6 +1079,16 @@ video {
   background-color: rgb(124 58 237 / var(--tw-bg-opacity));
 }
 
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
 .fill-primary-500\/80 {
   fill: rgb(99 102 241 / 0.8);
 }
@@ -4200,6 +4210,10 @@ svg#clock {
   .dark\:bg-gray-700 {
     --tw-bg-opacity: 1;
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-gray-500\/20 {
+    background-color: rgb(107 114 128 / 0.2);
   }
 
   .dark\:text-blue-400 {
