@@ -1,0 +1,40 @@
+/* Atkinson Hyperlegible - Regular */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('fonts/AtkinsonHyperlegible-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Atkinson Hyperlegible - Italic */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('fonts/AtkinsonHyperlegible-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Atkinson Hyperlegible - Bold */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('fonts/AtkinsonHyperlegible-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* Atkinson Hyperlegible - Bold Italic */
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('fonts/AtkinsonHyperlegible-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* Fjalla One - Regular */
+@font-face {
+  font-family: 'Fjalla One';
+  src: url('fonts/FjallaOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
