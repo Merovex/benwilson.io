@@ -14,6 +14,7 @@ title: 'Ben Wilson, author'
       <div class="w-4 shrink-0 sm:w-48"></div>
     </div>
     {%- for book in site.books %}
+    {%- if book.draft != true %}
     <div class="snap-center shrink-0 first:pl-8 last:pr-8">
       <a href="{{ book.url }}" class="rounded ">
         {% if book.cover_image %}
@@ -35,6 +36,7 @@ title: 'Ben Wilson, author'
         <h3 class="h3 text-center">{{ book.title }}</h3>
       </a>
     </div>
+    {% endif %}
     {%- endfor %}
     <div class="snap-center shrink-0">
       <div class="w-4 shrink-0 sm:w-48"></div>

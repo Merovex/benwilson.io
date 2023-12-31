@@ -9,6 +9,7 @@ module.exports = {
     '_posts/**/*.md',
     '_pages/**/*.md',
     '_tools/**/*.html',
+    '*html',
     '*.{markdown,md,html}'
   ],
   theme: {

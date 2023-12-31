@@ -544,40 +544,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .form-input,.form-textarea,.form-select,.form-multiselect {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -720,6 +686,11 @@ video {
   margin-bottom: 3rem;
 }
 
+.my-14 {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
 .my-16 {
   margin-top: 4rem;
   margin-bottom: 4rem;
@@ -791,6 +762,11 @@ video {
 .size-12 {
   width: 3rem;
   height: 3rem;
+}
+
+.size-24 {
+  width: 6rem;
+  height: 6rem;
 }
 
 .size-4 {
@@ -1072,6 +1048,10 @@ video {
   stroke: #6366f1;
 }
 
+.stroke-rose-500 {
+  stroke: #f43f5e;
+}
+
 .stroke-\[3px\] {
   stroke-width: 3px;
 }
@@ -1086,6 +1066,11 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .px-2 {
@@ -1103,9 +1088,19 @@ video {
   padding-right: 1rem;
 }
 
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.py-14 {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
 }
 
 .py-2 {
@@ -1129,6 +1124,10 @@ video {
   text-align: right;
 }
 
+.font-display {
+  font-family: Fjalla One, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1146,6 +1145,11 @@ video {
 
 .text-7xl {
   font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text-9xl {
+  font-size: 8rem;
   line-height: 1;
 }
 
@@ -1205,6 +1209,11 @@ video {
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-rose-500 {
+  --tw-text-opacity: 1;
+  color: rgb(244 63 94 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -4138,6 +4147,11 @@ svg#clock {
 
   .md\:flex {
     display: flex;
+  }
+
+  .md\:size-60 {
+    width: 15rem;
+    height: 15rem;
   }
 
   .md\:h-\[500px\] {

@@ -6,7 +6,7 @@ seo:
   title: "Postal Marines: Bellicose"
 weight: 1
 layout: book
-featured: true
+draft: false
 hook-1: Novice Postal Marine gets into a battle of wits with the AI embedded in his brain on the eve of the largest Postal Service battle in history.
 hook-2: Never fight a battle of wits with an AI embedded in your brain. That's what Postal Marine Bophendze must do to keep sane.
 hook: Could you win a battle of wits with the AI wired into your brain? That's just what Postal Marine Danel Bophendze must do to keep sane.
