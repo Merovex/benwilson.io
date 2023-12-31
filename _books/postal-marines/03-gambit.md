@@ -1,8 +1,8 @@
 ---
 title: "Gambit"
 layout: book
-cover_image: 'gambit-cover.jpg'
-art_image: 'Gambit-art.jpg'
+cover_image: 'gambit-cover.avif'
+art_image: 'Gambit-art.avif'
 seo:
   title: "Postal Marines: Gambit"
 weight: 2

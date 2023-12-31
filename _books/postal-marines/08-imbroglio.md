@@ -1,7 +1,7 @@
 ---
 title: "Imbroglio"
-cover_image: 'imbroglio-cover.jpg'
-art_image: 'Imbroglio-art.jpg'
+cover_image: 'imbroglio-cover.avif'
+art_image: 'Imbroglio-art.avif'
 layout: book
 seo:
   title: "Postal Marines: Imbroglio"

@@ -1,7 +1,7 @@
 ---
 title: "Bellicose"
-cover_image: 'bellicose-cover.jpg'
-art_image: 'Bellicose-art.jpg'
+cover_image: 'bellicose-cover.avif'
+art_image: 'Bellicose-art.avif'
 seo:
   title: "Postal Marines: Bellicose"
 weight: 1
