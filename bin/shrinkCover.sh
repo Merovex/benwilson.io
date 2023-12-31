@@ -15,6 +15,10 @@ filename="${path%.*}"
 # Create a new filename with '-small.avif' appended
 new_filename="${filename}-thumbnail.avif"
 convert $path -resize 480x720 $new_filename
+echo $new_filename
+
+new_filename="${filename}-thumbnail-mobile.avif"
+convert $path -resize 240x490 $new_filename
 
 # Output the new filename
 echo $new_filename

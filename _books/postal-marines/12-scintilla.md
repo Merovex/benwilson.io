@@ -2,7 +2,6 @@
 title: "Scintilla"
 cover_image: 'scintilla-cover.avif'
 art_image: 'Scintilla-art.avif'
-thumbnail_image: 'scintilla-cover-thumbnail.avif'
 layout: book
 seo:
   title: "Postal Marines: Scintilla"

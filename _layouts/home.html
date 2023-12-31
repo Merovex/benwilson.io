@@ -17,8 +17,17 @@ title: 'Ben Wilson, author'
     <div class="snap-center shrink-0 first:pl-8 last:pr-8">
       <a href="{{ book.url }}" class="rounded ">
         {% if book.cover_image %}
-        <img src="/assets/images/covers/{{  book.thumbnail_image }}" alt="Cover of {{ book.title }}"
-          class="h-[360px] w-[240px] m-4 rounded shadow-xl" />
+        {% assign file_parts = book.cover_image | split: '.' %}
+        {% assign filename = file_parts[0] %}
+        {% assign extension = file_parts[1] %}
+        {% assign thumbnail_image = filename | append: '-thumbnail' | append: '.' | append: extension %}
+        {% assign mobile_thumbnail_image = filename | append: '-thumbnail-mobile' | append: '.' | append: extension %}
+        <picture>
+          <source media="(max-width: 799px)" srcset="/assets/images/covers/{{ mobile_thumbnail_image }}">
+          <source media="(min-width: 800px)" srcset="/assets/images/covers/{{ thumbnail_image }}">
+          <img src="/assets/images/covers/gambit-cover.avif" alt="Cover of Gambit"
+            class="h-[360px] w-[240px] m-4 rounded shadow-xl">
+        </picture>
         {% else %}
         <img src="{{  'https://via.placeholder.com/1200x1800' }}" alt="Cover of {{ book.title }}"
           class="h-[360px] w-[240px] m-4 rounded shadow-xl" />

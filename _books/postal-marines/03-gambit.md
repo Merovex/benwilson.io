@@ -2,7 +2,6 @@
 title: "Gambit"
 layout: book
 cover_image: 'gambit-cover.avif'
-thumbnail_image: 'gambit-cover-thumbnail.avif'
 art_image: 'Gambit-art.avif'
 seo:
   title: "Postal Marines: Gambit"
