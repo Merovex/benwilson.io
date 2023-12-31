@@ -5,7 +5,7 @@ require 'find'
 def convert_to_avif(input_path)
   # Remove the extension and add .convert_to_avif
   output_path = input_path.gsub(File.extname(input_path),'.avif')
-  system("magick convert '#{input_path}' -quality 50 '#{output_path}'")
+  system("magick convert '#{input_path}' -quality 40 '#{output_path}'")
   return output_path
 end
 

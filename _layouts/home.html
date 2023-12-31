@@ -1,5 +1,6 @@
 ---
 layout: default
+title: 'Ben Wilson, author'
 ---
 {% include biography.html %}
 <div class="mb-12"></div>
@@ -16,10 +17,10 @@ layout: default
     <div class="snap-center shrink-0 first:pl-8 last:pr-8">
       <a href="{{ book.url }}" class="rounded ">
         {% if book.cover_image %}
-        <img src="/assets/images/covers/{{  book.cover_image }}" alt="{{ book.title }}"
+        <img src="/assets/images/covers/{{  book.cover_image }}" alt="Cover of {{ book.title }}"
           class="h-[360px] w-[240px] m-4 rounded shadow-xl" />
         {% else %}
-        <img src="{{  'https://via.placeholder.com/1200x1800' }}" alt="{{ book.title }}"
+        <img src="{{  'https://via.placeholder.com/1200x1800' }}" alt="Cover of {{ book.title }}"
           class="h-[360px] w-[240px] m-4 rounded shadow-xl" />
         {% endif %}
         <h3 class="h3 text-center">{{ book.title }}</h3>
