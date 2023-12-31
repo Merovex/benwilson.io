@@ -1202,11 +1202,6 @@ video {
   letter-spacing: 0.1em;
 }
 
-.text-blue-600 {
-  --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
-}
-
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
@@ -3102,12 +3097,11 @@ h1 {
 
 .permalink {
   --tw-text-opacity: 1;
-  color: rgb(59 130 246 / var(--tw-text-opacity));
+  color: rgb(29 78 216 / var(--tw-text-opacity));
 }
 
 .permalink:hover {
-  --tw-text-opacity: 1;
-  color: rgb(29 78 216 / var(--tw-text-opacity));
+  text-decoration-line: underline;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -3118,12 +3112,8 @@ h1 {
 
   .permalink:hover {
     --tw-text-opacity: 1;
-    color: rgb(37 99 235 / var(--tw-text-opacity));
+    color: rgb(147 197 253 / var(--tw-text-opacity));
   }
-}
-
-.permalink {
-  text-decoration-line: underline;
 }
 
 .subscription_form {
@@ -4177,11 +4167,6 @@ svg#clock {
   .dark\:bg-gray-700 {
     --tw-bg-opacity: 1;
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
-  }
-
-  .dark\:text-blue-400 {
-    --tw-text-opacity: 1;
-    color: rgb(96 165 250 / var(--tw-text-opacity));
   }
 
   .dark\:text-gray-50 {
