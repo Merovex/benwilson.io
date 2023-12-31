@@ -1,6 +1,7 @@
 ---
 title: "Imbroglio"
 cover_image: 'imbroglio-cover.avif'
+thumbnail_image: 'imbroglio-cover-thumbnail.avif'
 art_image: 'Imbroglio-art.avif'
 layout: book
 seo:

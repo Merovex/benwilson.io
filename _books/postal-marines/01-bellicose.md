@@ -1,6 +1,7 @@
 ---
 title: "Bellicose"
 cover_image: 'bellicose-cover.avif'
+thumbnail_image: 'bellicose-cover-thumbnail.avif'
 art_image: 'Bellicose-art.avif'
 seo:
   title: "Postal Marines: Bellicose"
