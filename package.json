@@ -12,6 +12,7 @@
   "scripts": {
     "jekyll": "bundle exec jekyll serve",
     "tailwind": "tailwindcss -i ./assets/main.css -o ./assets/styles.css --watch",
+    "minify": "postcss ./assets/styles.css -o ./assets/styles.min.css",
     "dev": "TAILWIND_MODE=watch NODE_ENV=development npm-run-all --parallel jekyll tailwind",
     "build": "tailwindcss -i ./assets/main.css -o ./assets/style.css --minify && bundle exec jekyll build"
   },
@@ -19,6 +20,9 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.10",
-    "npm-run-all": "^4.1.5"
+    "cssnano": "^6.0.2",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^11.0.0",
+    "postcss-nesting": "^12.0.2"
   }
 }
