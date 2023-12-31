@@ -39,3 +39,5 @@ gem "reverse_markdown", "~> 2.1"
 gem "httparty", "~> 0.21.0"
 
 gem "jekyll-redirect-from", "~> 0.16.0"
+
+gem "jekyll-sitemap", "~> 1.4"
