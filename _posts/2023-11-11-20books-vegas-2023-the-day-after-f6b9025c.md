@@ -1,12 +1,10 @@
 ---
 layout: post
 title: '20Books Vegas 2023: the Day After'
-date: 2023-12-29 16:01:16.000000000 Z
+date: 2023-11-11 16:01:16.000000000 Z
 uid: f6b9025c
 redirect_from: []
 ---
- **Originally posted on 11 November**  
-  
 was in Las Vegas this past week attending the last-ever 20 Books Vegas. Started in 2017, this conference inspired thousands of writers around the world. This was my third such conference, and the last. The primary show runner, Craig Martelle, went out on a high note and passed the mantel. To be honest, this year lacked the energy of the prior two years.
 
 This is the day after. Or rather, it's the day after the day after. Yesterday I spent 14 hours in planes, trains and automobiles returning to hearth and home. I'm exhausted. But I am also inspired.  

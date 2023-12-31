@@ -5,6 +5,7 @@ require 'find'
 def convert_to_avif(input_path)
   # Remove the extension and add .convert_to_avif
   output_path = input_path.gsub(File.extname(input_path),'.avif')
+  return if File.exists?(output_path)
   system("magick convert '#{input_path}' -quality 40 '#{output_path}'")
   return output_path
 end
@@ -17,6 +18,7 @@ def crawl_directory(directory)
     case File.extname(path).downcase
     when '.jpg', '.jpeg', '.png'
       npath = convert_to_avif(path)
+      next if npath.nil?
       n_size = size(npath)
       reduction = ((o_size - n_size) / o_size) * 100
       puts "Converted: #{File.basename(path)} .. #{o_size} => #{size(npath)} = #{reduction.round(3)}%"
