@@ -44,12 +44,18 @@ My weight target is to reach 192# by 9 November, with a fallback to 197# if I pl
 **Habit Tracking.** One thing I am looking forward to in 2024 is the new [Hey Calendar](https://twitter.com/jasonfried/status/1740896488765694186). They are including features I currently track as recurring tasks in Basecamp. This includes a habit tracker, which let's me attempt a few of my trackable goals ala the [Seinfeld Strategy](https://jamesclear.com/stop-procrastinating-seinfeld-strategy). I can use this to track my writing days. You see below the daily view (you click the blank icon when you've done the habit) and the streak view (shows when you've done that habit). My habits are reading and writing. I bought a [Finish 2024 calendar](https://www.neuyear.net/products/finish-year) that competes with Hey's streak tracking. I will use both this year to see whether I do better with the analog calendar that is next to my monitor or the on that is online.   
   
 
-[![GCsplSZaoAAsmi9.jpeg](https://world.hey.com/benwilson/bc47fe61/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2NvWC9wWSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--21c3453494e5536e69fbfccaad079e1da15b387b/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9MWm05eWJXRjBTU0lKYW5CbFp3WTZCa1ZVT2hSeVpYTnBlbVZmZEc5ZmJHbHRhWFJiQjJrQ2dBZHBBZ0FGT2d4eGRXRnNhWFI1YVVzNkMyeHZZV1JsY25zR09nbHdZV2RsTURvTlkyOWhiR1Z6WTJWVSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--824130a6fd2f596d29a6d245cf773fab0beee210/GCsplSZaoAAsmi9.jpeg)](https://world.hey.com/benwilson/bc47fe61/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2NvWC9wWSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--21c3453494e5536e69fbfccaad079e1da15b387b/GCsplSZaoAAsmi9.jpeg?disposition=attachment "Download GCsplSZaoAAsmi9.jpeg")
+<figure>
+<img src='/assets/images/posts/GCsplSZaoAAsmi9.avif' alt='GCsplSZaoAAsmi9.jpeg'>
+<figcaption>GCsplSZaoAAsmi9.jpeg</figcaption>
+</figure>
   
   
   
 
-[![Screenshot 2023-12-31 at 2.56.05 PM.png](https://world.hey.com/benwilson/bc47fe61/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2VTZC9wWSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--58c750014bfdb56f5bb685736c80cd126689b6ae/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFLQUIya0NBQVU2REhGMVlXeHBkSGxwU3pvTGJHOWhaR1Z5ZXdZNkNYQmhaMlV3T2cxamIyRnNaWE5qWlZRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--946116ea0c454412635aa7309bd9472bf633014c/Screenshot%202023-12-31%20at%202.56.05%E2%80%AFPM.png)](https://world.hey.com/benwilson/bc47fe61/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2VTZC9wWSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--58c750014bfdb56f5bb685736c80cd126689b6ae/Screenshot%202023-12-31%20at%202.56.05%E2%80%AFPM.png?disposition=attachment "Download Screenshot 2023-12-31 at 2.56.05 PM.png")
+<figure>
+<img src='/assets/images/posts/Screenshot%202023-12-31%20at%202.avif' alt='Screenshot 2023-12-31 at 2.56.05 PM.png'>
+<figcaption>Screenshot 2023-12-31 at 2.56.05 PM.png</figcaption>
+</figure>
   
 1,697 days!  
   

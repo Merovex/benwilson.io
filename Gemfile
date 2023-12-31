@@ -41,3 +41,5 @@ gem "httparty", "~> 0.21.0"
 gem "jekyll-redirect-from", "~> 0.16.0"
 
 gem "jekyll-sitemap", "~> 1.4"
+
+gem "mini_magick", "~> 4.12"

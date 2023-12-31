@@ -39,10 +39,5 @@ Even when I hit my pause and focused on programming for a few months, I kept up 
 
 ## Conclusion
 
-Basecamp is not just a tool; it's a solution to multiple challenges I face in managing my writer's business. It's an all-in-one platform that streamlines tasks, fosters community engagement, and keeps me organized. If you're a writer looking for a robust project management tool, give Basecamp a try. You won't regret it.  
-  
-  
-  
-
-[![merovex-logo-150px.png](https://world.hey.com/benwilson/09fdb1ef/representations/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2NSOTNKUyIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4fbc2227935b7a4c52bc5b3a1f10470b517f648f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDam9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFLQUIya0NBQVU2REhGMVlXeHBkSGxwU3pvTGJHOWhaR1Z5ZXdZNkNYQmhaMlV3T2cxamIyRnNaWE5qWlZRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--946116ea0c454412635aa7309bd9472bf633014c/merovex-logo-150px.png)](https://world.hey.com/benwilson/09fdb1ef/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHNLd2NSOTNKUyIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--4fbc2227935b7a4c52bc5b3a1f10470b517f648f/merovex-logo-150px.png?disposition=attachment "Download merovex-logo-150px.png")
+Basecamp is not just a tool; it's a solution to multiple challenges I face in managing my writer's business. It's an all-in-one platform that streamlines tasks, fosters community engagement, and keeps me organized. If you're a writer looking for a robust project management tool, give Basecamp a try. You won't regret it.
 
