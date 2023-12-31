@@ -5,8 +5,8 @@ title: 'Ben Wilson, author'
 {% include biography.html %}
 <div class="mb-12"></div>
 
-<section class="mb-20"
-  style="background: url(/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2-a.avif) center right; background-size: cover;">
+<section class="mb-20 low-res-bg"
+  style="background: url(/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2-a-lowres.avif) center right; background-size: cover;">
   <div
     class="relative flex w-full overflow-x-auto shadow-inner gap-6 snap-x snap-mandatory p-14 xbg-indigo-200/20 text-white"
     style="text-shadow: 1px 1px 1px #000">
@@ -46,3 +46,14 @@ title: 'Ben Wilson, author'
   </footer>
 </article>
 {% endfor %}
+
+<script>
+  window.addEventListener('load', (event) => {
+    const highResImage = new Image();
+    highResImage.src = '/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2-a.avif';
+    highResImage.onload = () => {
+      document.querySelector('.low-res-bg').style.backgroundImage = `url('${highResImage.src}')`;
+      // document.querySelector('.low-res-bg').style.opacity = 0; // Fade out the low-res image
+    };
+  });
+</script>
