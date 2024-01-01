@@ -1040,8 +1040,25 @@ video {
   background-color: rgb(124 58 237 / var(--tw-bg-opacity));
 }
 
+.bg-rose-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(244 63 94 / var(--tw-bg-opacity));
+}
+
 .fill-primary-500\/80 {
   fill: rgb(99 102 241 / 0.8);
+}
+
+.fill-gray-500 {
+  fill: #6b7280;
+}
+
+.fill-rose-500 {
+  fill: #f43f5e;
+}
+
+.fill-gray-700 {
+  fill: #374151;
 }
 
 .stroke-primary-500 {
@@ -1050,6 +1067,10 @@ video {
 
 .stroke-rose-500 {
   stroke: #f43f5e;
+}
+
+.stroke-gray-500 {
+  stroke: #6b7280;
 }
 
 .stroke-\[3px\] {
@@ -4220,6 +4241,10 @@ svg#clock {
   .dark\:bg-gray-700 {
     --tw-bg-opacity: 1;
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
+  }
+
+  .dark\:fill-gray-200 {
+    fill: #e5e7eb;
   }
 
   .dark\:text-gray-50 {
