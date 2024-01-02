@@ -38,7 +38,7 @@ THIS_WEEK = [
 # puts 'good'
 # exit
 
-asset_dir = '/Users/merovex/Code/merovex/benwilson.io/_includes/'
+asset_dir = '/Users/merovex/Code/merovex/benwilson.io/assets/'
 dashboard_dir = '/Users/merovex/Code/merovex/benwilson.io/_data/'
 scrivener_json = "#{dashboard_dir}/scrivener.json"
 dashboard_file = "#{dashboard_dir}/dashboard.json"
@@ -233,10 +233,11 @@ end
 # File.open("#{dashboard_dir}/mersk.json", 'w').write(JSON.pretty_generate(mersk))
 # File.open("#{dashboard_dir}/mersk.min.json", 'w').write(JSON.generate(mersk))
 # File.open("#{dashboard_dir}/mersk.yaml", 'w').write(mersk.to_yaml)
+puts "writing #{veriklo_file}"
 File.open(veriklo_file, 'w').write(verkilo.to_yaml)
-File.open("./assets/wordcount.json",'w').write(JSON.generate(wc_json))
+File.open("#{asset_dir}/wordcount.json",'w').write(JSON.generate(wc_json))
 # File.open("./assets/wordcount.csv",'w').write(JSON.generate(wc_json))
-CSV.open("./assets/wordcount.csv", "w") do |csv|
+CSV.open("#{asset_dir}/wordcount.csv", "w") do |csv|
   # Write the header row
   csv << wc_json.first.keys
 
@@ -428,8 +429,8 @@ GRAPH
   end
   # ap
 
-File.open("#{asset_dir}/last_week.svg",'w').write(buildGraphSvg(dashboard[:graph_last], 'purple'))
-File.open("#{asset_dir}/current_week.svg",'w').write(buildGraphSvg(dashboard[:graph_current], 'blue'))
-File.open("#{asset_dir}/annual.svg",'w').write(buildGraphSvg(dashboard[:annual], 'amber'))
-File.open("#{asset_dir}/weekly_annual.svg",'w').write(buildGraphSvg(dashboard[:weekly_annual], 'amber'))
-File.open("#{asset_dir}/heatmap.svg",'w').write(drawHeatmap(heatmap['365d'],YEAR_AGO,TODAY ).gsub("\n", ' '))
+# File.open("#{asset_dir}/last_week.svg",'w').write(buildGraphSvg(dashboard[:graph_last], 'purple'))
+# File.open("#{asset_dir}/current_week.svg",'w').write(buildGraphSvg(dashboard[:graph_current], 'blue'))
+# File.open("#{asset_dir}/annual.svg",'w').write(buildGraphSvg(dashboard[:annual], 'amber'))
+# File.open("#{asset_dir}/weekly_annual.svg",'w').write(buildGraphSvg(dashboard[:weekly_annual], 'amber'))
+# File.open("#{asset_dir}/heatmap.svg",'w').write(drawHeatmap(heatmap['365d'],YEAR_AGO,TODAY ).gsub("\n", ' '))

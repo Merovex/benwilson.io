@@ -79,15 +79,22 @@ title: Word Count
   let last_week_count = [];
   let current_week_count = [];
 
-  const startOfWeek = moment().startOf('week').format('YYYY-MM-DD');
-  const startOfLastWeek = moment().subtract(1, 'week').startOf('week').format('YYYY-MM-DD');
-  const endOfLastWeek = moment().startOf('week').format('YYYY-MM-DD');
+  const startOfWeek = moment().startOf('isoWeek').format('YYYY-MM-DD');
+  const endOfWeek = moment().endOf('isoWeek').format('YYYY-MM-DD');
+  const startOfLastWeek = moment().subtract(1, 'week').startOf('isoWeek').format('YYYY-MM-DD');
+  const endOfLastWeek = moment().subtract(1, 'week').endOf('isoWeek').format('YYYY-MM-DD');
   const startOf365DaysAgo = moment().subtract(365, 'days').format('YYYY-MM-DD');
 
-  const fillMissingDays = (data, period) => {
+  console.log(startOfLastWeek, endOfLastWeek, startOfWeek, endOfWeek, startOf365DaysAgo);
+
+  const fillMissingDays = (data, startDate, endDate) => {
+    console.log('fillMissingDays', startDate, endDate);
     let filledData = [];
+    let period = moment(endDate).diff(moment(startDate), 'days') + 1
     for (let i = 0; i < period; i++) {
-      let date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+      // let date = moment().subtract(i, 'days').format('YYYY-MM-DD');
+      let date = moment(startDate).add(i, 'days').format('YYYY-MM-DD')
+      // console.log(date);
       let foundEntry = data.find(entry => entry.date === date);
       filledData.push(foundEntry || { date: date, value: 0 });
     }
@@ -139,9 +146,10 @@ title: Word Count
         document.getElementById('current_week_count').innerHTML = current_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
       })
 
-      let line_graph_data_365 = fillMissingDays(last_365d_count, 365);
-      let line_graph_data_week = fillMissingDays(last_week_count, 7);
-      let line_graph_data_current_week = fillMissingDays(current_week_count, 7);
+      let line_graph_data_365 = fillMissingDays(last_365d_count, startOf365DaysAgo, moment().format('YYYY-MM-DD'));
+      let line_graph_data_week = fillMissingDays(last_week_count, startOfLastWeek, endOfLastWeek);
+      let line_graph_data_current_week = fillMissingDays(current_week_count, startOfWeek, endOfWeek);
+      console.log(current_week_count, line_graph_data_current_week);
 
       lineGraph(groupByWeek(line_graph_data_365), '#last365dGraph');
       lineGraph(line_graph_data_week, '#lastWeekGraph');
@@ -185,14 +193,16 @@ title: Word Count
       .domain([0, d3.max(parsedData, d => d.value)])  // Use parsedData here
       .range([height, 0]);
 
+    // Add the area
     svg.append("path")
       .datum(parsedData)
       .attr("class", "fill-primary-500/80")
       .attr("fill-opacity", .3)
       .attr("stroke", "none")
-      .attr("d", d3.line()
+      .attr("d", d3.area()
         .x(d => x(d.date))
-        .y(d => y(d.value))
+        .y0(y(0))  // This ensures the bottom of the area is at y(0)
+        .y1(d => y(d.value))
         .curve(d3.curveBasis)
       );
 
