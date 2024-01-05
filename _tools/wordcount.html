@@ -22,11 +22,16 @@ title: Word Count
     <span class="uppercase text-sm text-subtle">Current Week</span>
     <div id="currentWeekGraph"></div>
   </div>
-  <div
-    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
+  <div class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] ">
     <span id="last_365d_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last 365 Days</span>
     <div id="last365dGraph"></div>
+  </div>
+  <div
+    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
+    <span id="lifetime_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Lifetime</span>
+    <div id="alltimeGraph"></div>
   </div>
 </section>
 <section class="mt-16">
@@ -78,6 +83,7 @@ title: Word Count
   let last_365d_count = [];
   let last_week_count = [];
   let current_week_count = [];
+  let lifetime_count = 0;
 
   const startOfWeek = moment().startOf('isoWeek').format('YYYY-MM-DD');
   const endOfWeek = moment().endOf('isoWeek').format('YYYY-MM-DD');
@@ -116,7 +122,6 @@ title: Word Count
     });
   };
 
-
   const loadData = async () => {
     days = {};
     try {
@@ -126,6 +131,7 @@ title: Word Count
       }
       const entries = await response.json();
       entries.forEach(entry => {
+        lifetime_count += (entry.count || 0);
         if (!days[entry.date]) { days[entry.date] = { count: 0, level: entry.level }; } // Initialize day
         days[entry.date].count += (entry.count || 0); // Ensure entry.count is a number
         // if day is in the current week, add to current_week_count
@@ -141,10 +147,12 @@ title: Word Count
         else if (entry.date >= startOf365DaysAgo) {
           last_365d_count.push({ date: entry.date, value: entry.count });
         }
-        document.getElementById('last_365d_count').innerHTML = last_365d_count.reduce((a, b) => a + b.value, 0).toLocaleString();
-        document.getElementById('last_week_count').innerHTML = last_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
-        document.getElementById('current_week_count').innerHTML = current_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+
       })
+      document.getElementById('last_365d_count').innerHTML = last_365d_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+      document.getElementById('last_week_count').innerHTML = last_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+      document.getElementById('current_week_count').innerHTML = current_week_count.reduce((a, b) => a + b.value, 0).toLocaleString();
+      document.getElementById('lifetime_count').innerHTML = lifetime_count.toLocaleString();
 
       let line_graph_data_365 = fillMissingDays(last_365d_count, startOf365DaysAgo, moment().format('YYYY-MM-DD'));
       let line_graph_data_week = fillMissingDays(last_week_count, startOfLastWeek, endOfLastWeek);

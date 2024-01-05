@@ -233,7 +233,7 @@ end
 # File.open("#{dashboard_dir}/mersk.json", 'w').write(JSON.pretty_generate(mersk))
 # File.open("#{dashboard_dir}/mersk.min.json", 'w').write(JSON.generate(mersk))
 # File.open("#{dashboard_dir}/mersk.yaml", 'w').write(mersk.to_yaml)
-puts "writing #{veriklo_file}"
+#puts "writing #{veriklo_file}"
 File.open(veriklo_file, 'w').write(verkilo.to_yaml)
 File.open("#{asset_dir}/wordcount.json",'w').write(JSON.generate(wc_json))
 # File.open("./assets/wordcount.csv",'w').write(JSON.generate(wc_json))
