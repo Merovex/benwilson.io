@@ -8,9 +8,10 @@
 
 body {
   /* font-size: 18px; */
-  @apply bg-gray-50/20 text-gray-800;
-  @apply dark:bg-gray-800 dark:text-gray-200;
+  @apply bg-[#FFFFFF] text-gray-800;
+  @apply dark:bg-gray-900 dark:text-gray-200;
   @apply px-4 md:px-0;
+  /* @apply dark:bg-[#22272e] dark:text-gray-100; */
 }
 .bordered {
   @apply border border-gray-300 dark:border-gray-600;
@@ -252,3 +253,82 @@ svg#clock {
   @apply hover:bg-primary-700 hover:text-white;
   @apply hover:dark:bg-primary-500 hover:dark:text-white;
 }
+.ContributionCalendar-day {
+  @apply border border-gray-50 dark:border-gray-800 bg-gray-500/50 rounded-sm;
+}
+.contribution-map {
+  margin-block: auto;
+  border-spacing: 3px;
+  /* @apply bg-rose-50 dark:bg-rose-800; */
+}
+:root {
+  --color-calendar-graph-day-bg: #ebedf0;
+    --color-calendar-graph-day-border: rgba(27, 31, 35, 0.06);
+    --color-calendar-graph-day-L1-bg: #9be9a8;
+    --color-calendar-graph-day-L1-border: rgba(27, 31, 35, 0.06);
+    --color-calendar-graph-day-L2-bg: #40c463;
+    --color-calendar-graph-day-L2-border: rgba(27, 31, 35, 0.06);
+    --color-calendar-graph-day-L3-bg: #30a14e;
+    --color-calendar-graph-day-L3-border: rgba(27, 31, 35, 0.06);
+    --color-calendar-graph-day-L4-bg: #216e39;
+    --color-calendar-graph-day-L4-border: rgba(27, 31, 35, 0.06);
+}
+
+:root[data-color-scheme="dark"] {
+  --color-calendar-graph-day-bg: #2d333b;
+  --color-calendar-graph-day-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L1-bg: #0e4429;
+  --color-calendar-graph-day-L1-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L2-bg: #006d32;
+  --color-calendar-graph-day-L2-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L3-bg: #26a641;
+  --color-calendar-graph-day-L3-border: rgba(255, 255, 255, 0.05);
+  --color-calendar-graph-day-L4-bg: #39d353;
+  --color-calendar-graph-day-L4-border: rgba(255, 255, 255, 0.05);
+}
+
+.ContributionCalendar-grid {
+  width: max-content;
+  border-collapse: separate;
+  border-spacing: 3px;
+}
+
+.ContributionCalendar-day {
+  fill: var(--color-calendar-graph-day-bg);
+  shape-rendering: geometricPrecision;
+  background-color: var(--color-calendar-graph-day-bg);
+  border-radius: 2px;
+  outline: 1px solid var(--color-calendar-graph-day-border);
+  outline-offset: -1px;
+  border: none;
+}
+
+.ContributionCalendar-day[data-level="0"] { 
+  outline: 1px solid var(--color-calendar-graph-day-border);
+
+}
+
+.ContributionCalendar-day[data-level="1"] {
+  fill: var(--color-calendar-graph-day-L1-bg);
+  background-color: var(--color-calendar-graph-day-L1-bg);
+  outline: 1px solid var(--color-calendar-graph-day-border);
+}
+
+.ContributionCalendar-day[data-level="2"] {
+  fill: var(--color-calendar-graph-day-L2-bg);
+  background-color: var(--color-calendar-graph-day-L2-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L2-border);
+}
+
+.ContributionCalendar-day[data-level="3"] {
+  fill: var(--color-calendar-graph-day-L3-bg);
+  background-color: var(--color-calendar-graph-day-L3-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L3-border);
+}
+
+.ContributionCalendar-day[data-level="4"] {
+  fill: var(--color-calendar-graph-day-L4-bg);
+  background-color: var(--color-calendar-graph-day-L4-bg);
+  outline: 1px solid var(--color-calendar-graph-day-L4-border);
+}
+

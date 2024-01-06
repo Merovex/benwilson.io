@@ -3,77 +3,85 @@ layout: tool
 title: Word Count
 ---
 <script src="https://d3js.org/d3.v7.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/plugins/LegendLite.min.js"></script>
-<script src="https://unpkg.com/cal-heatmap/dist/plugins/CalendarLabel.min.js"></script>
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/cal-heatmap/dist/plugins/Tooltip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script type="module" src="/assets/controllers/calendar_controller.js"></script>
 
-<section class="md:flex flex-row my-16">
+<section class="md:flex my-8 md:space-x-1">
   <div
-    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-l-xl rounded md:rounded-r-none">
+    class="dark:bg-gray-800/[0.16] bg-gray-100 flex flex-col space-y-0 flex-1 p-2 my-1 md:rounded-l-xl rounded md:rounded-r-none">
     <span id="last_week_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Last Week</span>
-    <div id="lastWeekGraph"></div>
-  </div>
-  <div class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] rounded md:rounded-none">
-    <span id="current_week_count" class="text-3xl font-bold">0</span>
-    <span class="uppercase text-sm text-subtle">Current Week</span>
-    <div id="currentWeekGraph"></div>
-  </div>
-  <div class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] ">
-    <span id="last_365d_count" class="text-3xl font-bold">0</span>
-    <span class="uppercase text-sm text-subtle">Last 365 Days</span>
-    <div id="last365dGraph"></div>
+    <div id="lastWeekGraph" class="-mx-4"></div>
   </div>
   <div
-    class="dark:bg-gray-500/20 bg-gray-100 flex flex-col space-y-0 flex-1 p-2 m-[0.125em] md:rounded-r-xl rounded md:rounded-l-none">
+    class="dark:bg-gray-800/[0.16] bg-gray-100 flex flex-col space-y-0 flex-1 px-2 pt-2 my-1 rounded md:rounded-none">
+    <span id="current_week_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Current Week</span>
+    <div id="currentWeekGraph" class="-mx-4"></div>
+  </div>
+  <div class="dark:bg-gray-800/[0.16] bg-gray-100 flex flex-col space-y-0 flex-1 p-2 my-1 ">
+    <span id="last_365d_count" class="text-3xl font-bold">0</span>
+    <span class="uppercase text-sm text-subtle">Last 365 Days</span>
+    <div id="last365dGraph" class="-mx-4"></div>
+  </div>
+  <div
+    class="dark:bg-gray-800/[0.16] bg-gray-100 flex flex-col space-y-0 flex-1 p-2 my-1 md:rounded-r-xl rounded md:rounded-l-none">
     <span id="lifetime_count" class="text-3xl font-bold">0</span>
     <span class="uppercase text-sm text-subtle">Lifetime</span>
-    <div id="alltimeGraph"></div>
+    <div id="alltimeGraph" class="-mx-4"></div>
   </div>
 </section>
-<section class="mt-16">
-  <div id="cal-heatmap" class="xz-10"></div>
-  <div>
-    <div id="ex-ghDay" className="margin-bottom--md"></div>
-    <div class="text-xs items-center justify-end flex space-x-2" id="Legend">
-      <span>Less</span>
-      <div id="ex-ghDay-legend"></div>
-      <span>More</span>
+<section>
+  <div class="flex space-x-4" data-controller="calendar-graph">
+    <div class="my-4 flex-1">
+      {% include contribution-map-365d.html %}
+      {% include contribution-map-2024.html %}
+      {% include contribution-map-2023.html %}
+      {% include contribution-map-2022.html %}
+      {% include contribution-map-2021.html %}
+      {% include contribution-map-2020.html %}
+
+      <div class="float-right flex items-center">
+        <span data-view-component="true" class="mr-1">Less</span>
+        <div style="width: 10px; height: 10px" id="contribution-graph-legend-level-0" data-level="0"
+          data-view-component="true" class="ContributionCalendar-day rounded-1 mr-1">
+          <span class="sr-only">No contributions.</span>
+        </div>
+        <div style="width: 10px; height: 10px" id="contribution-graph-legend-level-1" data-level="1"
+          data-view-component="true" class="ContributionCalendar-day rounded-1 mr-1">
+          <span class="sr-only">Low contributions.</span>
+        </div>
+        <div style="width: 10px; height: 10px" id="contribution-graph-legend-level-2" data-level="2"
+          data-view-component="true" class="ContributionCalendar-day rounded-1 mr-1">
+          <span class="sr-only">Medium-low contributions.</span>
+        </div>
+        <div style="width: 10px; height: 10px" id="contribution-graph-legend-level-3" data-level="3"
+          data-view-component="true" class="ContributionCalendar-day rounded-1 mr-1">
+          <span class="sr-only">Medium-high contributions.</span>
+        </div>
+        <div style="width: 10px; height: 10px" id="contribution-graph-legend-level-4" data-level="4"
+          data-view-component="true" class="ContributionCalendar-day rounded-1 mr-1">
+          <span class="sr-only">High contributions.</span>
+        </div>
+        <span data-view-component="true">More</span>
+      </div>
     </div>
-    <div class="flex justify-center space-x-2">
-      <span id="fastReverseButton" title="Go back 12 months" class="btn-wordcount" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
-          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M21 5v14l-8 -7z" />
-          <path d="M10 5v14l-8 -7z" />
-        </svg>
-      </span>
-      <span id="reverseButton" title="Go back 1 month" class="btn-wordcount" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="rotate-180 size-4" width="24" height="24" viewBox="0 0 24 24"
-          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M7 4v16l13 -8z" />
-        </svg>
-      </span>
-      <span id="forwardButton" title="Go forward 1 month" class="btn-wordcount" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
-          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M7 4v16l13 -8z" />
-        </svg>
-      </span>
-      <span id="fastForwardButton" title="Go forward 12 months" class="btn-wordcount" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" width="24" height="24" viewBox="0 0 24 24"
-          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M3 5v14l8 -7z" />
-          <path d="M14 5v14l8 -7z" />
-        </svg>
-      </span>
+    <div class="flex flex-col space-y-2">
+      <button data-action="click->calendar-graph#show"
+        class="hover:bg-gray-500/10 py-1 px-2 rounded bg-indigo-500 text-white" data-calendar-graph-target="button"
+        data-calendar-name="365d">365d</button>
+      <button data-action="click->calendar-graph#show" class="hover:bg-gray-500/10 py-1 px-2 rounded"
+        data-calendar-graph-target="button" data-calendar-name="2024">2024</button>
+      <button data-action="click->calendar-graph#show" class="hover:bg-gray-500/10 py-1 px-2 rounded"
+        data-calendar-graph-target="button" data-calendar-name="2023">2023</button>
+      <button data-action="click->calendar-graph#show" class="hover:bg-gray-500/10 py-1 px-2 rounded"
+        data-calendar-graph-target="button" data-calendar-name="2022">2022</button>
+      <button data-action="click->calendar-graph#show" class="hover:bg-gray-500/10 py-1 px-2 rounded"
+        data-calendar-graph-target="button" data-calendar-name="2021">2021</button>
+      <button data-action="click->calendar-graph#show" class="hover:bg-gray-500/10 py-1 px-2 rounded"
+        data-calendar-graph-target="button" data-calendar-name="2020">2020</button>
     </div>
   </div>
 </section>
@@ -91,10 +99,10 @@ title: Word Count
   const endOfLastWeek = moment().subtract(1, 'week').endOf('isoWeek').format('YYYY-MM-DD');
   const startOf365DaysAgo = moment().subtract(365, 'days').format('YYYY-MM-DD');
 
-  console.log(startOfLastWeek, endOfLastWeek, startOfWeek, endOfWeek, startOf365DaysAgo);
+  // console.log(startOfLastWeek, endOfLastWeek, startOfWeek, endOfWeek, startOf365DaysAgo);
 
   const fillMissingDays = (data, startDate, endDate) => {
-    console.log('fillMissingDays', startDate, endDate);
+    // console.log('fillMissingDays', startDate, endDate);
     let filledData = [];
     let period = moment(endDate).diff(moment(startDate), 'days') + 1
     for (let i = 0; i < period; i++) {
@@ -157,7 +165,7 @@ title: Word Count
       let line_graph_data_365 = fillMissingDays(last_365d_count, startOf365DaysAgo, moment().format('YYYY-MM-DD'));
       let line_graph_data_week = fillMissingDays(last_week_count, startOfLastWeek, endOfLastWeek);
       let line_graph_data_current_week = fillMissingDays(current_week_count, startOfWeek, endOfWeek);
-      console.log(current_week_count, line_graph_data_current_week);
+      // console.log(current_week_count, line_graph_data_current_week);
 
       lineGraph(groupByWeek(line_graph_data_365), '#last365dGraph');
       lineGraph(line_graph_data_week, '#lastWeekGraph');
@@ -204,7 +212,7 @@ title: Word Count
     // Add the area
     svg.append("path")
       .datum(parsedData)
-      .attr("class", "fill-primary-500/80")
+      .attr("class", "fill-primary-500")
       .attr("fill-opacity", .3)
       .attr("stroke", "none")
       .attr("d", d3.area()
@@ -218,7 +226,7 @@ title: Word Count
     svg.append("path")
       .datum(parsedData)  // Use parsedData
       .attr("fill", "none")
-      .attr("class", "stroke-primary-500 stroke-[3px]")
+      .attr("class", "stroke-primary-600 dark:stroke-primary-400 stroke-[3px]")
       .attr("d", d3.line()
         .x(d => x(d.date))
         .y(d => y(d.value))
@@ -236,7 +244,7 @@ title: Word Count
     // Optionally, you can listen for changes and update the mode variable accordingly
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
       mode = event.matches ? 'dark' : 'light';
-      console.log('Mode changed to:', mode); // Do something when the mode changes
+      // console.log('Mode changed to:', mode); // Do something when the mode changes
     });
 
     return mode;
@@ -257,63 +265,64 @@ title: Word Count
       const yearIds = years.map(year => `y_${year}`);
       today = new Date();
 
-      cal = new CalHeatmap();
-      cal.paint({
-        data: { source: entries, x: 'date', y: 'count' },
-        date: { start: new Date(parseInt(years[years.length - 1]) - 1, today.getMonth() + 1, today.getDate()) },
-        // range: (parseInt(years[years.length - 1]) - parseInt(years[0]) + 1) * 12,
-        range: 12,
-        // scale: { color: { type: 'linear', scheme: 'PRGn', domain: [-500, 1250] } },
-        scale: {
-          color: {
-            type: 'threshold',
-            range: colorRange[getDisplayMode()],
-            domain: [500, 1000, 1250],
-          },
-        },
-        domain: {
-          type: 'month',
-          // gutter: 1,
-          label: { text: "MMM 'YY", textAlign: 'start', position: 'top' },
-        },
-        subDomain: { type: 'ghDay', radius: 2, width: 11, height: 11, gutter: 4 },
-      },
-        [
-          [
-            Tooltip,
-            {
-              text: function (date, value, dayjsDate) {
-                return (
-                  (value ? value : 'No') +
-                  ' words on ' +
-                  dayjsDate.format('dddd, MMMM D, YYYY')
-                );
-              },
-            },
-          ],
-          [
-            LegendLite,
-            {
-              includeBlank: true,
-              itemSelector: '#ex-ghDay-legend',
-              radius: 2,
-              width: 11,
-              height: 11,
-              gutter: 4,
-            },
-          ],
-          [
-            CalendarLabel,
-            {
-              position: 'left',
-              key: 'left',
-              text: () => ['', 'Mon', '', 'Wed', '', 'Fri', ''],
-              textAlign: 'end',
-              width: 30,
-              padding: [25, 5, 0, 0],
-            },
-          ],
-        ]);
+      // cal = new CalHeatmap();
+      // cal.paint({
+      //   data: { source: entries, x: 'date', y: 'count' },
+      //   date: { start: new Date(parseInt(years[years.length - 1]) - 1, today.getMonth() + 1, today.getDate()) },
+      //   // range: (parseInt(years[years.length - 1]) - parseInt(years[0]) + 1) * 12,
+      //   range: 12,
+      //   // scale: { color: { type: 'linear', scheme: 'PRGn', domain: [-500, 1250] } },
+      //   scale: {
+      //     color: {
+      //       type: 'threshold',
+      //       range: colorRange[getDisplayMode()],
+      //       domain: [500, 1000, 1250],
+      //     },
+      //   },
+      //   domain: {
+      //     type: 'month',
+      //     // gutter: 1,
+      //     label: { text: "MMM 'YY", textAlign: 'start', position: 'top' },
+      //   },
+      //   subDomain: { type: 'ghDay', radius: 2, width: 10, height: 10, gutter: 3 },
+      //   theme: 'dark'
+      // },
+      //   [
+      //     [
+      //       Tooltip,
+      //       {
+      //         text: function (date, value, dayjsDate) {
+      //           return (
+      //             (value ? value : 'No') +
+      //             ' words on ' +
+      //             dayjsDate.format('dddd, MMMM D, YYYY')
+      //           );
+      //         },
+      //       },
+      //     ],
+      //     [
+      //       LegendLite,
+      //       {
+      //         includeBlank: true,
+      //         itemSelector: '#ex-ghDay-legend',
+      //         radius: 2,
+      //         width: 11,
+      //         height: 11,
+      //         gutter: 4,
+      //       },
+      //     ],
+      //     [
+      //       CalendarLabel,
+      //       {
+      //         position: 'left',
+      //         key: 'left',
+      //         text: () => ['', 'Mon', '', 'Wed', '', 'Fri', ''],
+      //         textAlign: 'end',
+      //         width: 30,
+      //         padding: [25, 5, 0, 0],
+      //       },
+      //     ],
+      //   ]);
 
       lineGraph([
         { date: new Date(2020, 0, 1), count: 30 },
@@ -327,31 +336,5 @@ title: Word Count
       console.error("Error handling the entries: ", error);
     }
   })();
-
-  // Cal-Heatmap navigation buttons
-  document.addEventListener('DOMContentLoaded', function () {
-    var fastReverseButton = document.getElementById('fastReverseButton');
-    fastReverseButton.addEventListener('click', function (e) {
-      cal.previous(12);
-    });
-  });
-  document.addEventListener('DOMContentLoaded', function () {
-    var reverseButton = document.getElementById('reverseButton');
-    reverseButton.addEventListener('click', function (e) {
-      cal.previous(1);
-    });
-  });
-  document.addEventListener('DOMContentLoaded', function () {
-    var forwardButton = document.getElementById('forwardButton');
-    forwardButton.addEventListener('click', function (e) {
-      cal.next(1);
-    });
-  });
-  document.addEventListener('DOMContentLoaded', function () {
-    var fastForwardButton = document.getElementById('fastForwardButton');
-    fastForwardButton.addEventListener('click', function (e) {
-      cal.next(12);
-    });
-  });
 
 </script>

@@ -1,0 +1,275 @@
+[
+  {
+    "date": "2021-04-04",
+    "count": -179,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-11",
+    "count": 5,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-12",
+    "count": -801,
+    "target": 1250,
+    "level": -2,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-13",
+    "count": -4,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-14",
+    "count": 24,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-15",
+    "count": 277,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-16",
+    "count": 21,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-17",
+    "count": 0,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-18",
+    "count": 264,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-20",
+    "count": 1411,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-21",
+    "count": 3026,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-22",
+    "count": 277,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-23",
+    "count": 103,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-24",
+    "count": 0,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-25",
+    "count": 269,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-26",
+    "count": 1559,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-27",
+    "count": 68,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-28",
+    "count": 1024,
+    "target": 1250,
+    "level": 4,
+    "comment": ""
+  },
+  {
+    "date": "2021-11-29",
+    "count": 1197,
+    "target": 1250,
+    "level": 4,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-01",
+    "count": 964,
+    "target": 1250,
+    "level": 4,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-02",
+    "count": 84,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-03",
+    "count": 374,
+    "target": 1250,
+    "level": 2,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-07",
+    "count": 386,
+    "target": 1250,
+    "level": 2,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-08",
+    "count": 1906,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-09",
+    "count": 47,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-10",
+    "count": 5,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-11",
+    "count": 1256,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-12",
+    "count": 689,
+    "target": 1250,
+    "level": 3,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-13",
+    "count": 771,
+    "target": 1250,
+    "level": 3,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-20",
+    "count": 163,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-21",
+    "count": 564,
+    "target": 1250,
+    "level": 2,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-23",
+    "count": 0,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-24",
+    "count": -59,
+    "target": 1250,
+    "level": 0,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-25",
+    "count": 72,
+    "target": 1250,
+    "level": 1,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-26",
+    "count": 452,
+    "target": 1250,
+    "level": 2,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-27",
+    "count": 387,
+    "target": 1250,
+    "level": 2,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-28",
+    "count": 2079,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-30",
+    "count": 2235,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  },
+  {
+    "date": "2021-12-31",
+    "count": 2636,
+    "target": 1250,
+    "level": 5,
+    "comment": ""
+  }
+]

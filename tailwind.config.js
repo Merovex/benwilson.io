@@ -9,6 +9,7 @@ module.exports = {
     '_posts/**/*.md',
     '_pages/**/*.md',
     '_tools/**/*.html',
+    'assets/**/*.js',
     '*html',
     '*.{markdown,md,html}'
   ],
@@ -16,8 +17,34 @@ module.exports = {
     extend: {
       colors: {
         primary: colors.indigo,
-        gray: colors.gray,
+        xgray: colors.gray,
         heatmap: colors.emerald,
+        grey: {
+          50: "#F6F7F9",
+          100: "#EDEFF2",
+          200: "#DBDFE6",
+          300: "#C3CAD5",
+          400: "#ABB4C4",
+          500: "#8D9AAF",
+          600: "#677793",
+          700: "#333B49",
+          800: "#2A313C",
+          900: "#171B21",
+          950: "#171B21"
+        },
+        gray: {
+          50: "#F9FAFB",
+          100: "#F0F2F4",
+          200: "#E2E5E9",
+          300: "#D0D5DC",
+          400: "#BEC5CF",
+          500: "#ADB6C2",
+          600: "#95A1B1",
+          700: "#78879B",
+          800: "#596678",
+          900: "#22272E",
+          950: "#16191D"
+        }
       },
       fontFamily: {
         sans: ['Atkinson Hyperlegible', ...defaultTheme.fontFamily.sans],
@@ -25,6 +52,7 @@ module.exports = {
       }
     },
   },
+  darkMode: ['class', '[data-color-scheme="dark"]'],
   plugins: [
     require('@tailwindcss/typography'),
     require("@tailwindcss/forms")({

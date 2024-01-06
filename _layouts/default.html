@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color-scheme="dark">
 
 <head>
   {% include head.html %}
 </head>
 
 <body class="min-h-screen flex flex-col">
+  {% include color-scheme.html %}
+
   {% include header.html %}
   <main class="flex-1">
     {{ content }}
   </main>
 
-  <footer class="text-sm text-subtle pb-4 flex items-center justify-center space-x-2">
+  <footer class="text-sm text-subtle mt-16 pb-4 flex items-center justify-center space-x-2">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450.000000 450.000000"
       preserveAspectRatio="xMidYMid meet" class="size-6 fill-gray-700 dark:fill-gray-200 inline-block">
       <text x="350" y="80" class="sr-only" font-size="40">®</text>
