@@ -19,20 +19,49 @@ file = File.read(file_path)
 # Parse the JSON file into a Ruby array of objects
 data = JSON.parse(file).group_by { |entry| Date.parse(entry["date"]).year }
 
-def contribution_tooltip()
+def weeks_by_month(start_date, end_date)
 
+  # Initialize a hash to store the month and the number of weeks
+  month_weeks_count = Hash.new(0)
+
+  # Iterate through each week
+  while start_date <= end_date
+    # Get the Sunday of the current week
+    sunday = start_date - start_date.wday
+
+    # Get the month of the current Sunday
+    month = sunday.strftime('%b')
+
+    # Increment the count for the month
+    month_weeks_count[month] += 1
+
+    # Move to the next week
+    start_date += 7
+  end
+
+  # Convert the hash to an array of hashes as specified
+  month_weeks_count.map { |month, count| [month, count] }
 end
 
 def contribution_map(contributions, **args)
   sessions = contributions.flatten.count { |day| day[:entry] }
   wordcount = contributions.flatten.sum { |day| day[:entry] ? day[:entry]["count"] : 0 }
+  wbm = weeks_by_month(contributions.first.first[:date], contributions.last.last[:date])
   average = (wordcount / sessions).to_i unless sessions.zero?
   #Jdata-target="toggle-calendar.calendar" data-calendar-name="365d"
   # raise args.inspect
   output = "<h2>#{number_with_delimiter wordcount} words across #{sessions} days in #{args[:id] == '365d' ? 'the last year' : args[:id]} <span class='text-sm'>(~#{average} per session)</span></h2>"
   output += "<div class='max-w-2xl overflow-x-scroll'><table class='ContributionCalendar-grid max-w-2xl' style='border-spacing: 3px; overflow: hidden; position: relative'>"
   output += content_tag(:caption, 'Contribution Graph', class: 'sr-only')
-  # output += content_tag(:thead)
+
+  output += "<thead>\n"
+  output += "  <tr>\n"
+  wbm.each do |month|
+    output += content_tag(:th, month.first, class: 'text-xs font-medium text-gray-600 dark:text-gray-300', colspan: month.last)
+  end
+  output += "\n  </tr>\n"
+  output += "</thead>\n"
+
   output += "<tbody>\n"
   contributions.each do |week|
     idx = week.first[:date].strftime("%U").to_i + 1

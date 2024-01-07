@@ -1358,6 +1358,11 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(149 161 177 / var(--tw-text-opacity));
+}
+
 .text-opacity-80 {
   --tw-text-opacity: 0.8;
 }
@@ -4515,6 +4520,11 @@ svg#clock {
 :is(:where([data-color-scheme="dark"]) .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+:is(:where([data-color-scheme="dark"]) .dark\:text-gray-300) {
+  --tw-text-opacity: 1;
+  color: rgb(208 213 220 / var(--tw-text-opacity));
 }
 
 :is(:where([data-color-scheme="dark"]) .dark\:placeholder-gray-300\/50)::-moz-placeholder {
