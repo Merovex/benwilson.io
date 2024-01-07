@@ -48,9 +48,6 @@ My weight target is to reach 192# by 9 November, with a fallback to 197# if I pl
 <img src='/assets/images/posts/GCsplSZaoAAsmi9.avif' alt='GCsplSZaoAAsmi9.jpeg'>
 <figcaption>GCsplSZaoAAsmi9.jpeg</figcaption>
 </figure>
-  
-  
-  
 
 <figure>
 <img src='/assets/images/posts/Screenshot%202023-12-31%20at%202.avif' alt='Screenshot 2023-12-31 at 2.56.05 PM.png'>

@@ -27,10 +27,12 @@ description: >- # this means to ignore newlines until "baseurl:"
   Explore his popular titles and latest releases today.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://benwilson.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+twitter_username: merovex
+github_username:  merovex
 
 permalink: /posts/:title/
+paginate: 12
+paginate_path: "/page:num/"
 
 include:
   - assets/css/style.css
@@ -40,6 +42,7 @@ plugins:
   - jekyll-feed
   - jekyll-redirect-from
   - jekyll-sitemap
+  - jekyll-paginate
 
 collections:
   books:

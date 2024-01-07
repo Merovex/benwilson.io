@@ -910,6 +910,10 @@ video {
   width: 100%;
 }
 
+.max-w-2xl {
+  max-width: 42rem;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -924,14 +928,6 @@ video {
 
 .max-w-prose {
   max-width: 65ch;
-}
-
-.max-w-xl {
-  max-width: 36rem;
-}
-
-.max-w-2xl {
-  max-width: 42rem;
 }
 
 .flex-1 {
@@ -994,6 +990,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-around {
+  justify-content: space-around;
 }
 
 .gap-6 {
@@ -1155,6 +1155,10 @@ video {
 
 .stroke-rose-500 {
   stroke: #f43f5e;
+}
+
+.stroke-1 {
+  stroke-width: 1;
 }
 
 .stroke-\[3px\] {
@@ -1338,6 +1342,11 @@ video {
   color: rgb(173 182 194 / var(--tw-text-opacity));
 }
 
+.text-gray-600 {
+  --tw-text-opacity: 1;
+  color: rgb(149 161 177 / var(--tw-text-opacity));
+}
+
 .text-gray-900 {
   --tw-text-opacity: 1;
   color: rgb(34 39 46 / var(--tw-text-opacity));
@@ -1356,11 +1365,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-gray-600 {
-  --tw-text-opacity: 1;
-  color: rgb(149 161 177 / var(--tw-text-opacity));
 }
 
 .text-opacity-80 {
@@ -1522,7 +1526,7 @@ body {
 .bordered {
   border-width: 1px;
   --tw-border-opacity: 1;
-  border-color: rgb(208 213 220 / var(--tw-border-opacity));
+  border-color: rgb(240 242 244 / var(--tw-border-opacity));
 }
 
 :is(:where([data-color-scheme="dark"]) .bordered) {
@@ -1532,7 +1536,7 @@ body {
 
 .text-subtle {
   --tw-text-opacity: 1;
-  color: rgb(173 182 194 / var(--tw-text-opacity));
+  color: rgb(120 135 155 / var(--tw-text-opacity));
 }
 
 :is(:where([data-color-scheme="dark"]) .text-subtle) {
@@ -2377,7 +2381,7 @@ h1 {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   border-width: 1px;
   --tw-border-opacity: 1;
-  border-color: rgb(208 213 220 / var(--tw-border-opacity));
+  border-color: rgb(240 242 244 / var(--tw-border-opacity));
 }
 
 :is(:where([data-color-scheme="dark"]) .post-card) {
@@ -4512,6 +4516,11 @@ svg#clock {
   stroke: #818cf8;
 }
 
+:is(:where([data-color-scheme="dark"]) .dark\:text-gray-300) {
+  --tw-text-opacity: 1;
+  color: rgb(208 213 220 / var(--tw-text-opacity));
+}
+
 :is(:where([data-color-scheme="dark"]) .dark\:text-gray-50) {
   --tw-text-opacity: 1;
   color: rgb(249 250 251 / var(--tw-text-opacity));
@@ -4520,11 +4529,6 @@ svg#clock {
 :is(:where([data-color-scheme="dark"]) .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-:is(:where([data-color-scheme="dark"]) .dark\:text-gray-300) {
-  --tw-text-opacity: 1;
-  color: rgb(208 213 220 / var(--tw-text-opacity));
 }
 
 :is(:where([data-color-scheme="dark"]) .dark\:placeholder-gray-300\/50)::-moz-placeholder {
