@@ -1,7 +1,10 @@
 <header class="max-w-prose mx-auto mt-16 flex flex-col justify-center">
   <a class="inline-flex items-center flex-col mx-auto" aria-label="All posts from Ben Wilson, Author" href="/">
-    <img src="/assets/images/ben-wilson-2023a.avif" class="rounded-full shadow size-12 dev" size="50x50" alt="">
-    <p class="text-subtle uppercase txt--normal tracking-widest flush--top mb-4">
+    <picture class="rounded-full shadow size-12 dev">
+      <source type="image/avif" srcset="/assets/images/ben-wilson-2023a.avif" class="rounded-full shadow">
+      <img src="/assets/images/ben-wilson-2023a.jpg" size="50x50" alt="" class="rounded-full shadow">
+    </picture>
+    <p class=" text-subtle uppercase txt--normal tracking-widest flush--top mb-4">
       {{ site.title }}
     </p>
   </a>

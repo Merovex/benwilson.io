@@ -30,14 +30,13 @@ def contribution_map(contributions, **args)
   #Jdata-target="toggle-calendar.calendar" data-calendar-name="365d"
   # raise args.inspect
   output = "<h2>#{number_with_delimiter wordcount} words across #{sessions} days in #{args[:id] == '365d' ? 'the last year' : args[:id]} <span class='text-sm'>(~#{average} per session)</span></h2>"
-  output += "<table class='ContributionCalendar-grid' style='border-spacing: 3px; overflow: hidden; position: relative'>"
+  output += "<div class='max-w-2xl overflow-x-scroll'><table class='ContributionCalendar-grid max-w-2xl' style='border-spacing: 3px; overflow: hidden; position: relative'>"
   output += content_tag(:caption, 'Contribution Graph', class: 'sr-only')
   # output += content_tag(:thead)
   output += "<tbody>\n"
   contributions.each do |week|
     idx = week.first[:date].strftime("%U").to_i + 1
     output += "  <tr style='height:10px'>\n"
-    # <td tabindex="0" data-ix="32" aria-selected="false" aria-describedby="contribution-graph-legend-level-0" style="width: 10px" data-date="2023-08-15" id="contribution-day-component-2-32" data-level="0" role="gridcell" data-view-component="true" class="ContributionCalendar-day" aria-labelledby="tooltip-05d687bc-d40d-417c-8b89-466ffcee8989"></td>
     index = 0
     output += week.map do |day|
       index +=1
@@ -51,20 +50,8 @@ def contribution_map(contributions, **args)
         "No words on #{day[:date].strftime("%B %-d")}."
       end
       tooltip_tag = "contribution-day-component-#{day[:date].wday}-#{index}"
-      tooltip = content_tag(:span, entry,
-          id: "tooltip-#{SecureRandom.uuid}",
-          # for: tooltip_tag,
-          # popover: "manual",
-          # class: 'sr-only position-absolute',
-          # data: {
-          #   direction: "n",
-          #   type: "label",
-          #   action: 'mouseover->calendar-graph#show_tooltip mouseout->calendar-graph#hide_tooltip'
-          # }
-      )
       content_tag(:td,
         aria: { selected: false, describedby: "contribution-graph-legend-level-#{level}" },
-        id: tooltip_tag,
         data: {
           ix: idx,
           date: day[:date].strftime("%Y-%m-%d"),
@@ -74,12 +61,12 @@ def contribution_map(contributions, **args)
         tabindex: 0,
         style: "width: 10px",
       ) do
-        content_tag(:div, entry, id: "tooltip-#{SecureRandom.uuid}", role: "tooltip", class: 'tooltip' )
+        content_tag(:div, entry, role: "tooltip", class: 'tooltip' )
       end
     end.join("\n    ")
     output += "\n  </tr>\n"
   end
-  output += "</tbody></table>"
+  output += "</tbody></table></div>"
   # output
   "<div class='contribution-map #{args[:show] ? '' : 'hidden'}' data-calendar-graph-target='calendar' data-calendar-graph-name='#{args[:id]}'>#{output}</div>"
 end

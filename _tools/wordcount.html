@@ -265,65 +265,6 @@ title: Word Count
       const yearIds = years.map(year => `y_${year}`);
       today = new Date();
 
-      // cal = new CalHeatmap();
-      // cal.paint({
-      //   data: { source: entries, x: 'date', y: 'count' },
-      //   date: { start: new Date(parseInt(years[years.length - 1]) - 1, today.getMonth() + 1, today.getDate()) },
-      //   // range: (parseInt(years[years.length - 1]) - parseInt(years[0]) + 1) * 12,
-      //   range: 12,
-      //   // scale: { color: { type: 'linear', scheme: 'PRGn', domain: [-500, 1250] } },
-      //   scale: {
-      //     color: {
-      //       type: 'threshold',
-      //       range: colorRange[getDisplayMode()],
-      //       domain: [500, 1000, 1250],
-      //     },
-      //   },
-      //   domain: {
-      //     type: 'month',
-      //     // gutter: 1,
-      //     label: { text: "MMM 'YY", textAlign: 'start', position: 'top' },
-      //   },
-      //   subDomain: { type: 'ghDay', radius: 2, width: 10, height: 10, gutter: 3 },
-      //   theme: 'dark'
-      // },
-      //   [
-      //     [
-      //       Tooltip,
-      //       {
-      //         text: function (date, value, dayjsDate) {
-      //           return (
-      //             (value ? value : 'No') +
-      //             ' words on ' +
-      //             dayjsDate.format('dddd, MMMM D, YYYY')
-      //           );
-      //         },
-      //       },
-      //     ],
-      //     [
-      //       LegendLite,
-      //       {
-      //         includeBlank: true,
-      //         itemSelector: '#ex-ghDay-legend',
-      //         radius: 2,
-      //         width: 11,
-      //         height: 11,
-      //         gutter: 4,
-      //       },
-      //     ],
-      //     [
-      //       CalendarLabel,
-      //       {
-      //         position: 'left',
-      //         key: 'left',
-      //         text: () => ['', 'Mon', '', 'Wed', '', 'Fri', ''],
-      //         textAlign: 'end',
-      //         width: 30,
-      //         padding: [25, 5, 0, 0],
-      //       },
-      //     ],
-      //   ]);
-
       lineGraph([
         { date: new Date(2020, 0, 1), count: 30 },
         { date: new Date(2020, 1, 1), count: 50 },
@@ -338,24 +279,9 @@ title: Word Count
   })();
   document.querySelectorAll('.ContributionCalendar-day').forEach(function (day) {
     let tooltip = day.querySelector('.tooltip');
-    let arrow = tooltip.querySelector('#arrow');
 
     Popper.createPopper(day, tooltip, {
-      placement: 'top', // or 'right', 'bottom', 'left'
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 8],
-          },
-        },
-        {
-          name: 'arrow',
-          options: {
-            element: arrow,
-          },
-        },
-      ],
+      placement: 'top', modifiers: [{ name: 'offset', options: { offset: [0, 8], }, }],
     });
   });
 
