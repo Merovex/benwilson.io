@@ -291,6 +291,7 @@ svg#clock {
   width: max-content;
   border-collapse: separate;
   border-spacing: 3px;
+  position: relative;
 }
 
 .ContributionCalendar-day {
@@ -301,6 +302,30 @@ svg#clock {
   outline: 1px solid var(--color-calendar-graph-day-border);
   outline-offset: -1px;
   border: none;
+  position: relative;
+}
+.ContributionCalendar-day:hover span {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+.ContributionCalendar-day span {
+  @apply bg-gray-800 text-white text-xs rounded-sm w-44 -ml-[86px] absolute text-center py-1 px-2;
+  z-index: 5000;
+  visibility: hidden;
+  /* opacity: 0; */
+  bottom: 150%;
+  left: 50%;
+}
+.ContributionCalendar-day span:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #596678 transparent transparent transparent;
 }
 
 .ContributionCalendar-day[data-level="0"] { 

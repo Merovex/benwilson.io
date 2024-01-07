@@ -19,6 +19,10 @@ file = File.read(file_path)
 # Parse the JSON file into a Ruby array of objects
 data = JSON.parse(file).group_by { |entry| Date.parse(entry["date"]).year }
 
+def contribution_tooltip()
+
+end
+
 def contribution_map(contributions, **args)
   sessions = contributions.flatten.count { |day| day[:entry] }
   wordcount = contributions.flatten.sum { |day| day[:entry] ? day[:entry]["count"] : 0 }
@@ -42,34 +46,36 @@ def contribution_map(contributions, **args)
       level = 0 if level < 0
 
       entry = if day[:entry]
-        "#{day[:entry]['count']} words on #{day[:date].strftime("%B %-d")}.}"
+        "#{day[:entry]['count']} words on #{day[:date].strftime("%B %-d")}."
       else
         "No words on #{day[:date].strftime("%B %-d")}."
       end
       tooltip_tag = "contribution-day-component-#{day[:date].wday}-#{index}"
-      [content_tag(:tooltip, entry,
+      tooltip = content_tag(:span, entry,
           id: "tooltip-#{SecureRandom.uuid}",
-          for: tooltip_tag,
-          popover: "manual",
-          class: 'sr-only position-absolute',
-          data: {
-            direction: "n",
-            type: "label",
-            action: 'mouseover->calendar-graph#show_tooltip mouseout->calendar-graph#hide_tooltip'
-          }
-      ),
-      content_tag(:td, '',
-        tabindex: 0, aria: { selected: false, describedby: "contribution-graph-legend-level-#{level}" },
+          # for: tooltip_tag,
+          # popover: "manual",
+          # class: 'sr-only position-absolute',
+          # data: {
+          #   direction: "n",
+          #   type: "label",
+          #   action: 'mouseover->calendar-graph#show_tooltip mouseout->calendar-graph#hide_tooltip'
+          # }
+      )
+      content_tag(:td,
+        aria: { selected: false, describedby: "contribution-graph-legend-level-#{level}" },
+        id: tooltip_tag,
         data: {
           ix: idx,
           date: day[:date].strftime("%Y-%m-%d"),
-          level: level,
-          # view_component: true
+          level: level
         },
-        id: tooltip_tag,
-        class: "ContributionCalendar-day level-#{level}",
+        class: "ContributionCalendar-day level-#{level} relative",
+        tabindex: 0,
         style: "width: 10px",
-      )].join("\n    ")
+      ) do
+        content_tag(:span, entry, id: "tooltip-#{SecureRandom.uuid}", role: "tooltip" )
+      end
       # <td tabindex="0" data-ix="51" aria-selected="false" aria-describedby="contribution-graph-legend-level-1" style="width: 10px" data-date="2023-12-30" id="contribution-day-component-6-51" data-level="1" role="gridcell" data-view-component="true" class="ContributionCalendar-day"></td>
       # <tool-tip id="tooltip-78e3ca70-9ef4-43ea-87f3-a18c498151b3" for="contribution-day-component-6-51" popover="manual" data-direction="n" data-type="label" data-view-component="true" class="sr-only position-absolute">5 contributions on December 30th.</tool-tip>
     end.join("\n    ")
