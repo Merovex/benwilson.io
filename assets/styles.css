@@ -3953,17 +3953,10 @@ svg#clock {
   outline: 1px solid var(--color-calendar-graph-day-border);
   outline-offset: -1px;
   border: none;
-  position: relative;
+  /* position: relative; */
 }
 
-.ContributionCalendar-day:hover span {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.ContributionCalendar-day span {
-  position: absolute;
+.ContributionCalendar-day .tooltip {
   margin-left: -86px;
   width: 11rem;
   border-radius: 0.125rem;
@@ -3980,20 +3973,52 @@ svg#clock {
   color: rgb(255 255 255 / var(--tw-text-opacity));
   z-index: 5000;
   visibility: hidden;
-  /* opacity: 0; */
-  bottom: 150%;
-  left: 50%;
+  opacity: 0;
+  transition: opacity 0.125s ease-in-out;
 }
 
-.ContributionCalendar-day span:after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -8px;
-  border-width: 8px;
+.ContributionCalendar-day:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+#arrow,
+[data-popper-arrow] {
+  width: 0;
+  height: 0;
   border-style: solid;
+  position: absolute;
+  margin: 0 5px;
+}
+
+.tooltip[data-popper-placement^='top']>#arrow {
+  bottom: -4px;
+  border-width: 0 5px 5px 5px;
+  border-color: transparent transparent #596678 transparent;
+  /* Match tooltip background */
+}
+
+.tooltip[data-popper-placement^='bottom']>#arrow {
+  top: -4px;
+  border-width: 5px 5px 0 5px;
   border-color: #596678 transparent transparent transparent;
+  /* Match tooltip background */
+}
+
+/* Add similar rules for left and right arrows if needed */
+
+.tooltip[data-popper-placement^='left']>#arrow {
+  right: -4px;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #596678 transparent transparent;
+  /* Match tooltip background */
+}
+
+.tooltip[data-popper-placement^='right']>#arrow {
+  left: -4px;
+  border-width: 5px 0 5px 5px;
+  border-color: transparent transparent transparent #596678;
+  /* Match tooltip background */
 }
 
 .ContributionCalendar-day[data-level="0"] {

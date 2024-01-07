@@ -338,14 +338,21 @@ title: Word Count
   })();
   document.querySelectorAll('.ContributionCalendar-day').forEach(function (day) {
     let tooltip = day.querySelector('.tooltip');
+    let arrow = tooltip.querySelector('#arrow');
 
     Popper.createPopper(day, tooltip, {
-      placement: 'top', // This can be 'top', 'right', 'bottom', or 'left'.
+      placement: 'top', // or 'right', 'bottom', 'left'
       modifiers: [
         {
           name: 'offset',
           options: {
-            offset: [0, 8], // These values can change depending on the size of your tooltip.
+            offset: [0, 8],
+          },
+        },
+        {
+          name: 'arrow',
+          options: {
+            element: arrow,
           },
         },
       ],

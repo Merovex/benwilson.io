@@ -74,10 +74,8 @@ def contribution_map(contributions, **args)
         tabindex: 0,
         style: "width: 10px",
       ) do
-        content_tag(:span, entry, id: "tooltip-#{SecureRandom.uuid}", role: "tooltip" )
+        content_tag(:div, entry, id: "tooltip-#{SecureRandom.uuid}", role: "tooltip", class: 'tooltip' )
       end
-      # <td tabindex="0" data-ix="51" aria-selected="false" aria-describedby="contribution-graph-legend-level-1" style="width: 10px" data-date="2023-12-30" id="contribution-day-component-6-51" data-level="1" role="gridcell" data-view-component="true" class="ContributionCalendar-day"></td>
-      # <tool-tip id="tooltip-78e3ca70-9ef4-43ea-87f3-a18c498151b3" for="contribution-day-component-6-51" popover="manual" data-direction="n" data-type="label" data-view-component="true" class="sr-only position-absolute">5 contributions on December 30th.</tool-tip>
     end.join("\n    ")
     output += "\n  </tr>\n"
   end
