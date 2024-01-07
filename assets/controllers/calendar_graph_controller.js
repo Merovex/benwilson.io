@@ -1,63 +1,57 @@
 import { Application, Controller } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
-// import CalHeatMap from 'cal-heatmap';
-this.heatmap = new CalHeatMap();
-// import CalHeatMap from 'https://unpkg.com/cal-heatmap/dist/cal-heatmap.min.js';
 window.Stimulus = Application.start()
 
 // Connects to data-controller="contribution-map"
 Stimulus.register("calendar-graph", class extends Controller {
-  static targets = ["day", "message", "yearButton", "graph", 'terms'];
-  // static targets = ["day", "message", "yearButton", "graph", 'terms', 'title', 'key', 'start_date', 'end_date', 'data']
-  days = {};
+  static targets = ["calendar", 'button', 'tooltip']
+  // data-action="mouseover->calendar-graph#show mouseout->calendar-graph#hide">
 
-  // getYear(date) {
-  //   return date.getFullYear();
-  // }
   connect() {
-    console.log('Calendar Graph Controller connected');
-    this.endDate = new Date(); // Start with today.
-    this.startDate = new Date(this.endDate); // Duplicate today's date.
-    this.startDate.setFullYear(this.startDate.getFullYear() - 1); // Set the start date to one year ago from the current date
-    this.startDate.setDate(this.startDate.getDate() + 1); // Add one day to make it 'tomorrow' of the last year
-    this.loadData();
-    if (this.days.length > 0) {
-      this.setHeatmapData();
-    }
+    // This will run when the controller is connected to your DOM
+    console.log("ToggleCalendar controller connected");
   }
-  async loadData() {
-    try {
-      const response = await fetch('/assets/wordcount.json');
-      if (!response.ok) {
-        throw new Error("Network response was not ok.");
-      }
-      const data = await response.json();
-      this.processEntries(data);
-      console.log("Loaded data:", this.days);
-    } catch (error) {
-      console.error("Error fetching data: ", error);
-    }
+  show_tooltip(event) {
+    event.preventDefault();
+    console.log("show_tooltip");
+    const tooltip = event.currentTarget.querySelector(".tooltip");
+    tooltip.classList.remove("hidden", 'sr-only');
   }
-  processEntries(entries) {
-    this.days = {}; // Initialize days object
+  hide_tooltip(event) {
+    event.preventDefault();
+    console.log("hide_tooltip");
+    const tooltip = event.currentTarget.querySelector(".tooltip");
+    tooltip.classList.add("hidden", 'sr-only');
+    // tooltip.classList.remove("sr-");
+  }
 
-    entries.forEach(entry => {
-      // let day = this.formatDate(entry.day); // Assuming formatDate is a method in this class
-      if (!this.days[entry.date]) {
-        this.days[entry.date] = { count: 0, level: entry.level };
-      }
-      this.days[entry.date].count += (entry.count || 0); // Ensure entry.count is a number
+  show(event) {
+    event.preventDefault();
+
+    // Get the calendar name from the button's data attribute
+    const calendarName = event.currentTarget.dataset.calendarName;
+
+    // Hide all calendars
+    this.calendarTargets.forEach((calendar) => {
+      calendar.classList.remove("hidden");
+      calendar.classList.add("hidden");
     });
-  }
-  setHeatmapData() {
-    // Dimensions and layout
-    this.size = 10;
-    this.padding = 3;
-    this.offset = [25, 15];
-    this.height = ((this.size + this.padding) * 9.5 + this.offset[1]);
-    this.width = ((this.size + this.padding) * 54 + this.offset[0]);
-    this.setGraph();
-  }
-  setGraph() {
+    this.buttonTargets.forEach((button) => {
+      button.classList.remove("bg-indigo-500", 'text-white', 'hover:bg-indigo-700');
+    });
+    const selectedButton = this.buttonTargets.find((button) => {
+      console.log(button.dataset.calendarName, calendarName, button.classList);
+      return button.dataset.calendarName === calendarName;
+    });
+    if (selectedButton) {
+      console.log("selectedButton", selectedButton);
+      selectedButton.classList.add("bg-indigo-500", 'text-white', 'hover:bg-indigo-700');
+    }
 
+    const selectedCalendar = this.calendarTargets.find((calendar) => {
+      return calendar.dataset.calendarGraphName === calendarName;
+    });
+    if (selectedCalendar) {
+      selectedCalendar.classList.remove("hidden");
+    }
   }
 });

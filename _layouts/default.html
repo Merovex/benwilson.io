@@ -13,9 +13,9 @@
     {{ content }}
   </main>
 
-  <footer class="text-sm text-subtle mt-16 pb-4 flex items-center justify-center space-x-2">
+  <footer class="text-sm text-subtle mt-16 pb-4 flex items-center justify-center text-gray-500 space-x-2 relative">
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 450.000000 450.000000"
-      preserveAspectRatio="xMidYMid meet" class="size-6 fill-gray-700 dark:fill-gray-200 inline-block">
+      preserveAspectRatio="xMidYMid meet" class="size-6 fill-gray-500 inline-block">
       <text x="350" y="80" class="sr-only" font-size="40">®</text>
       <g transform="translate(0.000000,450.000000) scale(0.100000,-0.100000)" stroke="none">
         <path d="M1990 4070 c-367 -78 -672 -314 -839 -648 -38 -76 -83 -211 -102
@@ -43,6 +43,17 @@
     <span>Merovex</span>
     <span>&mdash;</span>
     <span>Copyright &copy; Ben Wilson. All Rights Reserved.</span>
+    <aside class="absolute left-0">
+      <a href="/tools">
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="size-4 stroke-gray-100 dark:stroke-gray-700 hover:stroke-gray-500 inline-block" width="24" height="24"
+          viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+        </svg>
+      </a>
+    </aside>
   </footer>
 </body>
 <!-- <script type="module" src="/assets/main.js"></script> -->
