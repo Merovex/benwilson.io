@@ -43,10 +43,36 @@ def weeks_by_month(start_date, end_date)
   month_weeks_count.map { |month, count| [month, count] }
 end
 
+def add_contribution(day, index)
+  level = day[:entry] ? day[:entry]["level"] : 0
+  level = 4 if level > 4
+  level = 0 if level < 0
+
+  entry = if day[:entry]
+    "#{day[:entry]['count']} words on #{day[:date].strftime("%B %-d")}."
+  else
+    "No words on #{day[:date].strftime("%B %-d")}."
+  end
+  tooltip_tag = "contribution-day-component-#{day[:date].wday}-#{index}"
+  content_tag(:td,
+    aria: { selected: false, describedby: "contribution-graph-legend-level-#{level}" },
+    data: {
+      # ix: week.first[:date].strftime("%U").to_i + 1,
+      date: day[:date].strftime("%Y-%m-%d"),
+      level: level
+    },
+    class: "ContributionCalendar-day level-#{level} relative",
+    tabindex: 0,
+    style: "width: 10px",
+  ) do
+    content_tag(:div, entry, role: "tooltip", class: 'tooltip' )
+  end
+end
+
 def contribution_map(contributions, **args)
   sessions = contributions.flatten.count { |day| day[:entry] }
   wordcount = contributions.flatten.sum { |day| day[:entry] ? day[:entry]["count"] : 0 }
-  wbm = weeks_by_month(contributions.first.first[:date], contributions.last.last[:date])
+
   average = (wordcount / sessions).to_i unless sessions.zero?
   #Jdata-target="toggle-calendar.calendar" data-calendar-name="365d"
   # raise args.inspect
@@ -56,7 +82,7 @@ def contribution_map(contributions, **args)
 
   output += "<thead>\n"
   output += "  <tr>\n"
-  wbm.each do |month|
+  weeks_by_month(contributions.last.first[:date], contributions.last.last[:date]).each do |month|
     output += content_tag(:th, month.first, class: 'text-xs font-medium text-gray-600 dark:text-gray-300', colspan: month.last)
   end
   output += "\n  </tr>\n"
@@ -64,33 +90,15 @@ def contribution_map(contributions, **args)
 
   output += "<tbody>\n"
   contributions.each do |week|
-    idx = week.first[:date].strftime("%U").to_i + 1
     output += "  <tr style='height:10px'>\n"
     index = 0
+
     output += week.map do |day|
       index +=1
-      level = day[:entry] ? day[:entry]["level"] : 0
-      level = 4 if level > 4
-      level = 0 if level < 0
-
-      entry = if day[:entry]
-        "#{day[:entry]['count']} words on #{day[:date].strftime("%B %-d")}."
+      if day[:date].nil?
+         "    <td style='width: 10px'></td>\n"
       else
-        "No words on #{day[:date].strftime("%B %-d")}."
-      end
-      tooltip_tag = "contribution-day-component-#{day[:date].wday}-#{index}"
-      content_tag(:td,
-        aria: { selected: false, describedby: "contribution-graph-legend-level-#{level}" },
-        data: {
-          ix: idx,
-          date: day[:date].strftime("%Y-%m-%d"),
-          level: level
-        },
-        class: "ContributionCalendar-day level-#{level} relative",
-        tabindex: 0,
-        style: "width: 10px",
-      ) do
-        content_tag(:div, entry, role: "tooltip", class: 'tooltip' )
+        add_contribution(day, index)
       end
     end.join("\n    ")
     output += "\n  </tr>\n"
@@ -103,8 +111,13 @@ end
 # grouped_by_year = data.group_by { |entry| Date.parse(entry["date"]).year }
 data.keys.each do |year|
   contributions = Array.new(7) { [] }
-  (1..365).each do |day|
-    date = Date.new(year, 1, 1) + day - 1
+  offset = Date.new(year, 1, 1).wday
+  offset.times do |day|
+    contributions[day] << { date: nil, entry: nil }
+  end
+  # raise [year, offset, contributions].inspect
+  365.times do |day|
+    date = Date.new(year, 1, 1) + day
     dow = date.wday
     contributions[dow] << { date: date, entry: data[year].find { |entry| entry["date"] == date.to_s } }
   end
