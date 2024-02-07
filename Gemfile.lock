@@ -113,11 +113,11 @@ DEPENDENCIES
   jekyll-feed (~> 0.12)
   jekyll-paginate (~> 1.1)
   jekyll-redirect-from (~> 0.16.0)
+  jekyll-sass-converter (~> 3.0)
   jekyll-sitemap (~> 1.4)
   mini_magick (~> 4.12)
   minima (~> 2.5)
   reverse_markdown (~> 2.1)
-  sass-embedded (~> 1.70)
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)

@@ -46,4 +46,4 @@ gem "mini_magick", "~> 4.12"
 
 gem "jekyll-paginate", "~> 1.1"
 
-gem "sass-embedded", "~> 1.70"
+gem "jekyll-sass-converter", "~> 3.0"
