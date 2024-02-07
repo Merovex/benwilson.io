@@ -93,7 +93,7 @@ GEM
     sass-embedded (1.70.0)
       google-protobuf (~> 3.25)
       rake (>= 13.0.0)
-    sass-embedded (1.70.0-x86_64-linux-gnu)
+    sass-embedded (1.70.0-x86_64-linux)
       google-protobuf (~> 3.25)
     sax-machine (1.3.2)
     terminal-table (3.0.2)
@@ -117,6 +117,7 @@ DEPENDENCIES
   mini_magick (~> 4.12)
   minima (~> 2.5)
   reverse_markdown (~> 2.1)
+  sass-embedded (~> 1.70)
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)
