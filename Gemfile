@@ -16,6 +16,11 @@ gem "minima", "~> 2.5"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-redirect-from", "~> 0.16.0"
+  gem "jekyll-sitemap", "~> 1.4"
+  gem "mini_magick", "~> 4.12"
+  gem "jekyll-paginate", "~> 1.1"
+  gem "jekyll-sass-converter", "~> 3.0"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -37,13 +42,3 @@ gem "feedjira", "~> 3.2"
 gem "reverse_markdown", "~> 2.1"
 
 gem "httparty", "~> 0.21.0"
-
-gem "jekyll-redirect-from", "~> 0.16.0"
-
-gem "jekyll-sitemap", "~> 1.4"
-
-gem "mini_magick", "~> 4.12"
-
-gem "jekyll-paginate", "~> 1.1"
-
-gem "jekyll-sass-converter", "~> 3.0"
