@@ -22,7 +22,7 @@ group :jekyll_plugins do
   gem "jekyll-paginate", "~> 1.1"
   gem "jekyll-sass-converter", "~> 3.0"
 end
-
+# gem 'sass-embedded', '1.69.7'
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
 # and associated library.
 platforms :mingw, :x64_mingw, :mswin, :jruby do
