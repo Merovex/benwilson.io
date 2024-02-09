@@ -2,6 +2,7 @@
 title: Orbital Calculator
 date: 2021-12-21T05:47:27+05:00
 layout: tool
+description: "Calculate the synchronous orbit of a planet."
 ---
 <script type="module" src="/assets/controllers/orbital_calculator_controller.js"></script>
 
@@ -59,15 +60,16 @@ layout: tool
       <label class="flex-1" for="mass">Mass:</label>
       <div class="flex-1 flex">
         <input type="text" name="mass" id="mass" value="5.9736"
-          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
+          class="block flex-1 rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
           data-orbital-calculator-target="mass" data-action="change->orbital-calculator#calculate">
-        <span class="hint inline-block px-2 text-xs">kg in 10<sup>24</sup>. (Earth is 5.9736)</span>
+        <p class="hint flex-1 inline-block px-2 text-xs">kg in 10<sup>24</sup>. (Earth is 5.9736)</p>
       </div>
     </div>
     <div class="flex space-y-2">
       <label class="flex-1" for="altitude">Altitude (in Km):</label>
       <div class="flex-1">
         <input type="text" name="altitude" id="altitude" value="0" disabled="disabled"
+          class="block w-full rounded-md px-3 py-2 shadow-sm placeholder-gray-400 placeholder:text-gray-400 dark:placeholder-gray-300/50 focus:border-primary-500 focus:outline-none focus:ring-primary-600 dark:focus:ring-primary-500 border-0 text-gray-900 sm:leading-6 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset bg-gray-500/10 dark:bg-gray-700 dark:ring-gray-600 dark:text-gray-50 "
           data-orbital-calculator-target="altitude" data-action="change->orbital-calculator#calculate">
       </div>
     </div>

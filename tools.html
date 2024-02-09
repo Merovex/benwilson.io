@@ -5,8 +5,17 @@ title: Tools
 
 {% include biography.html %}
 <div class="mb-12"></div>
-<article class="max-w-prose mx-auto">
+<section class="max-w-prose mx-auto">
   {% for tool in site.tools %}
-  <li><a href='{{tool.url}}'>{{tool.title}}</a></li>
+  <article class='post-card'>
+    <header>
+      <h2>{{ tool.title }}</h2>
+    </header>
+    <div class="prosed my-4">{{ tool.description | strip_html | truncatewords: 50 }}</div>
+    <a class="absolute top-0 left-0 h-full w-full" href="{{ tool.url }}"><span class="sr-only">{{tool.title}}</span></a>
+    <footer>
+      <span class="inline-block mx-auto bordered rounded-full py-1 px-3">Use Tool</span>
+    </footer>
+  </article>
   {% endfor %}
-</article>
+</section>

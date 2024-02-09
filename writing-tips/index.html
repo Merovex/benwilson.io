@@ -1,0 +1,11 @@
+---
+layout: default
+title: Blog1
+category: writing-tips
+---
+
+{% for post in site.posts %}
+{% if post.categories contains 'writing-tips' %}
+{% include post-card.html %}
+{% endif %}
+{% endfor %}

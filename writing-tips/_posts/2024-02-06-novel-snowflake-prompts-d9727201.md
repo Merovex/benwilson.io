@@ -2,7 +2,8 @@
 layout: post
 title: Novel Snowflake Prompts
 date: 2024-02-06T00:00:00Z
-categories: []
+categories: 
+  - writing-tips
 tags: []
 ---
 
@@ -126,3 +127,22 @@ Or
 > * Self-Perception: How they see themselves differently at the story's conclusion.
 > 
 > This comprehensive character chart aims to encapsulate the character's evolution from their initial state, influenced by their backstory wound, through the challenges they face, leading to their epiphany and culminating in their transformation. The focus is on creating a rich, multi-dimensional character whose journey is both compelling and psychologically authentic.
+
+
+## Streamlined Prompt for Simplified Scene Analysis
+
+> **Prompt**: "Analyze a scene by focusing on essential elements to produce a succinct narrative summary. Follow this streamlined structure to distill the scene into a concise paragraph:
+> 
+> 1. **Scene Setting**: Start with a single sentence to establish the scene's setting, indicating the location, atmosphere, and initial situation.
+> 
+> 2. **Conflicts and Reactions**: Use the 'But & Therefore' construction to detail the scene's pivotal moments:
+>    - **First Success/Failure (But)**: Describe the first key event or conflict in one sentence using 'But' to indicate a complication or a pivotal moment.
+>    - **Reaction to Success/Failure (Therefore)**: Follow up with a 'Therefore' sentence, explaining the immediate consequence or reaction to the first event.
+>    - If applicable, include a **Second Success/Failure (But)** and its subsequent **Reaction (Therefore)**, following the same construction.
+> 
+> 3. **Final Outcome**: Conclude with a sentence that summarizes the outcome of the scene, highlighting the resolution or the resulting situation for the POV character and other key characters involved.
+> 
+> **Example Summary**:
+> 'In a bar on Kaihapio 2 Orbital, Pijemio and Silvano discuss smuggling complications under the Postal Service's scrutiny. But when Pijemio offers to spy against the Postal Service, Therefore, Silvano laughs off the suggestion, doubting Pijemio's capability. But Pijemio, undeterred and contemplating his own respect for Litovio's luck, Therefore, commits to finding a way to sabotage the Postal Service from within. This decision sets Pijemio on a precarious path of intrigue, loyalty, and potential betrayal.'
+> 
+> This prompt is designed to capture the essence of a scene through a focused and streamlined summary, clearly outlining the setting, conflicts, reactions, and outcomes in a narrative that is both concise and comprehensive."

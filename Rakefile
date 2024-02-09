@@ -23,6 +23,6 @@ namespace :blog do
       file.puts '---'
     end
 
-    puts "New post created: #{filename}"
+    puts filename
   end
 end
