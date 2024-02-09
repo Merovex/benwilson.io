@@ -4,17 +4,54 @@
 
 :root {
   --calgraph-1: #FF0000;
+  --radius-blob-1: 30% 70% 70% 30% / 53% 30% 70% 47%;
+  --radius-blob-2: 53% 47% 34% 66% / 63% 46% 54% 37%;
+  --radius-blob-3: 37% 63% 56% 44% / 49% 56% 44% 51%;
+  --radius-blob-4: 63% 37% 37% 63% / 43% 37% 63% 57%;
+  --radius-blob-5: 49% 51% 48% 52% / 57% 44% 56% 43%;
+}
+
+@layer base {
+  .rounded-blob-1 {
+    border-radius: var(--radius-blob-1);
+  }
+  .rounded-blob-2 {
+    border-radius: var(--radius-blob-2);
+  }
+  .rounded-blob-3 {
+    border-radius: var(--radius-blob-3);
+  }
+  .rounded-blob-4 {
+    border-radius: var(--radius-blob-4);
+  }
+  .rounded-blob-5 {
+    border-radius: var(--radius-blob-5);
+  }
+  
+  .bg-base-300 {
+    @apply bg-gray-200;
+    @apply dark:bg-gray-800 dark:text-gray-50;
+  }
+
+  .surface-2 {
+    @apply bg-red-100;
+    @apply dark:bg-gray-900 dark:text-gray-50;
+  }
+
+  .surface-1 {
+    @apply bg-[#fffcf9];
+    @apply dark:bg-gray-950 dark:text-gray-50;
+  }
 }
 
 body {
   /* font-size: 18px; */
-  @apply bg-[#fffcf9] text-gray-800;
-  @apply dark:bg-gray-900 dark:text-gray-200;
+  @apply surface-1;
   @apply px-4 md:px-0;
   /* @apply dark:bg-[#22272e] dark:text-gray-100; */
 }
 .bordered {
-  @apply border border-gray-100 dark:border-gray-600;
+  @apply border border-gray-100 dark:border-gray-700;
 }
 .text-subtle {
   @apply text-gray-700;
@@ -102,16 +139,15 @@ h1 {
   @apply bg-gray-200 dark:bg-gray-600 rounded-r-full px-4 py-2;
   @apply border border-l-0 border-gray-300 dark:border-gray-500;
 }
-.bg-base-300 {
-  @apply bg-gray-300;
-  @apply dark:bg-gray-700;
-}
+
 .form-select {
-  @apply mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6;
-  @apply bg-gray-50/[0.15] dark:ring-white/10 dark:bg-gray-700 dark:text-gray-50 dark:placeholder-gray-300/50 dark:focus:ring-primary-500;
+  @apply mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 sm:text-sm sm:leading-6;
+  @apply surface-2  dark:placeholder-gray-300/50 ;
+  @apply ring-1 ring-inset ring-gray-300 dark:ring-white/10;
+  @apply dark:focus:ring-primary-500 focus:ring-2 focus:ring-indigo-600;
 }
 .form-input {
-  @apply block w-full rounded-md border-0 bg-base-300 py-1.5 px-2 dark:text-gray-50 shadow-sm;
+  @apply block w-full rounded-md border-0 surface-2 py-1.5 px-2 dark:text-gray-50 shadow-sm;
   @apply ring-1 ring-inset ring-gray-400 dark:ring-white/10;
   @apply placeholder-gray-500;
   @apply focus:ring-2 focus:ring-inset focus:ring-indigo-500;

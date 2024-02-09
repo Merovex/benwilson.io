@@ -42,3 +42,5 @@ gem "feedjira", "~> 3.2"
 gem "reverse_markdown", "~> 2.1"
 
 gem "httparty", "~> 0.21.0"
+
+gem "awesome_print", "~> 1.9"

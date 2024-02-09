@@ -11,6 +11,7 @@ def convert_to_avif(input_path)
 end
 
 def crawl_directory(directory)
+  directory ||= 'assets/images/'
   Find.find(directory) do |path|
     next if File.directory?(path) # Skip directories
     o_size = size(path)

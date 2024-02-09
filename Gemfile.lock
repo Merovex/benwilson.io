@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
+    awesome_print (1.9.2)
     colorator (1.1.0)
     concurrent-ruby (1.2.3)
     crass (1.0.6)
@@ -100,6 +101,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print (~> 1.9)
   feedjira (~> 3.2)
   http_parser.rb (~> 0.6.0)
   httparty (~> 0.21.0)
