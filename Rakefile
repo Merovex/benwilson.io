@@ -11,8 +11,8 @@ require 'find'
 # Define a Rake task for creating a new Jekyll post
 desc 'Push code to GitHub'
 task :release do
-  `./bin/countScrivenerHistory.rb`
-  `./bin/contributionMap.rb`
+  # `./bin/countScrivenerHistory.rb`
+  # `./bin/contributionMap.rb`
   `git commit -am "Updating website content"`
   `git push origin master`
 end
