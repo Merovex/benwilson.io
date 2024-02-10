@@ -252,11 +252,9 @@ end
 puts (history.key?(TODAY)) ? history[TODAY][:totals][:dwc].to_i : 'Get to work, slug. Zero'
 
 def make_graph(points)
-
   start = calculateXY(points[0])
   result = "M #{start[:x]},#{start[:y]}\n"
   catmullRom2bezier(points).each do |point|
-
     result += "C #{point[0][:x]},#{point[0][:y]} #{point[1][:x]},#{point[1][:y]} #{point[2][:x]},#{point[2][:y]}\n"
   end
   result
@@ -405,8 +403,8 @@ KEY
       data-title="#{@title}"
       data-tooltip="#{data[:tooltip]}"
        />
-HEREDOC
-      rectangle.gsub("\n", ' ')
+    HEREDOC
+    rectangle.gsub("\n", ' ')
   end
 
   def set_heatmap_data(entries = [])
@@ -421,11 +419,11 @@ HEREDOC
     # ap data
     initialize_heatmap(data, start_date, end_date)
     graph = <<-GRAPH
-    <svg id='' xmlns="http://www.w3.org/2000/svg" style='object-fit: contain' class='w-full heatmap' overflow="hidden" viewbox="0 0 #{@width} #{@height}">
-      #{ draw_day_cells() }
-      #{ draw_axes() }
-    </svg>
-GRAPH
+      <svg id='' xmlns="http://www.w3.org/2000/svg" style='object-fit: contain' class='w-full heatmap' overflow="hidden" viewbox="0 0 #{@width} #{@height}">
+        #{draw_day_cells}
+        #{draw_axes}
+      </svg>
+    GRAPH
   end
   # ap
 

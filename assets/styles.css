@@ -444,24 +444,8 @@ video {
   display: none;
 }
 
-.rounded-blob-1 {
-  border-radius: var(--radius-blob-1);
-}
-
-.rounded-blob-2 {
-  border-radius: var(--radius-blob-2);
-}
-
-.rounded-blob-3 {
-  border-radius: var(--radius-blob-3);
-}
-
 .rounded-blob-4 {
   border-radius: var(--radius-blob-4);
-}
-
-.rounded-blob-5 {
-  border-radius: var(--radius-blob-5);
 }
 
 .surface-2 {
@@ -846,9 +830,9 @@ video {
   aspect-ratio: 2/3;
 }
 
-.size-12 {
-  width: 3rem;
-  height: 3rem;
+.size-16 {
+  width: 4rem;
+  height: 4rem;
 }
 
 .size-24 {
@@ -864,11 +848,6 @@ video {
 .size-6 {
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.size-16 {
-  width: 4rem;
-  height: 4rem;
 }
 
 .h-3 {

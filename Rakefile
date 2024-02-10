@@ -17,13 +17,20 @@ task :release do
   `git push origin master`
 end
 
-namespace :blog do
+namespace :posts do
+  def get_filename(title)
+    uuid = SecureRandom.uuid.split('-').first
+    date = Time.now.strftime('%Y-%m-%d')
+    ["_drafts/#{date}-#{title.downcase.gsub(/\s+/, '-')}-#{uuid}.md", date, uuid]
+  end
+
   desc 'Create a new Jekyll post'
   task :new, [:title] do |_, args|
     title = args[:title]
     date = Time.now.strftime('%Y-%m-%d')
-    uuid = SecureRandom.uuid.split('-').first
-    filename = "_posts/#{date}-#{title.downcase.gsub(/\s+/, '-')}-#{uuid}.md"
+    # uuid = SecureRandom.uuid.split('-').first
+    # filename = "_drafts/#{date}-#{title.downcase.gsub(/\s+/, '-')}-#{uuid}.md"
+    filename, date, uuid = get_filename(title)
 
     abort("#{filename} already exists!") if File.exist?(filename)
 
@@ -43,11 +50,35 @@ namespace :blog do
     puts filename
   end
 
+  desc 'Create a new Jekyll post with the category "unlisted"'
+  task :unlisted, [:title] do |_, args|
+    title = args[:title]
+    filename, date, uuid = get_filename(title)
+
+    abort("#{filename} already exists!") if File.exist?(filename)
+
+    # Create a new post file with default front matter
+    File.open(filename, 'w') do |file|
+      file.puts '---'
+      file.puts 'layout: post'
+      file.puts "title: #{title}"
+      file.puts "date: #{date}T00:00:00Z"
+      file.puts "uid: #{uuid}"
+      file.puts 'redirect_from: []'
+      file.puts 'categories:'
+      file.puts '- unlisted'
+      file.puts 'tags: []'
+      file.puts '---'
+    end
+
+    puts filename
+  end
+
   desc 'Import from Hey World'
   task :fetch do
 
     atom_url = 'https://world.hey.com/benwilson/feed.atom'
-    posts_dir = "_posts"
+    posts_dir = '_posts'
 
     def download_and_convert_image(image_url, destination_dir)
       filename = File.basename(URI.parse(image_url).path)
@@ -123,7 +154,7 @@ namespace :blog do
 
         File.open(filename, 'w') do |file|
           file.puts metadata.transform_keys(&:to_s).to_yaml
-          file.puts "---"
+          file.puts '---'
           file.puts content_md
         end
 
@@ -140,6 +171,105 @@ namespace :blog do
 
     fetch_and_convert(atom_url, posts_dir)
   end
+
+  desc 'Promote a draft to a post with the current date'
+  task :promote do
+    drafts_dir = '_drafts'
+    posts_dir = '_posts'
+    drafts = Dir.entries(drafts_dir).reject { |f| File.directory? f }
+
+    if drafts.empty?
+      puts 'No drafts found.'
+      next
+    end
+
+    puts 'Select a draft to promote by its number:'
+    puts '0: Exit'
+    drafts.each_with_index do |draft, index|
+      puts "#{index + 1}: #{draft}"
+    end
+
+    selected_index = STDIN.gets.chomp.to_i - 1
+
+    if selected_index < 0 || selected_index > drafts.length - 1
+      # puts "Invalid selection."
+      next
+    end
+
+    draft_to_promote = drafts[selected_index]
+    date_prefix = Date.today.strftime('%Y-%m-%d')
+    new_filename = "#{date_prefix}-#{draft_to_promote.gsub(/\d{4}-\d{2}-\d{2}-/, '')}"
+    destination = File.join(posts_dir, new_filename)
+
+    FileUtils.mv(File.join(drafts_dir, draft_to_promote), destination)
+
+    # Open destination and add or modify date in front matter
+    File.open(destination, 'r+') do |file|
+      content = file.read
+      frontmatter = content.match(/---\s*\n(.+?)\n?^---\s*\n/m)
+      if frontmatter
+        frontmatter = frontmatter[1]
+        frontmatter_hash = YAML.safe_load(frontmatter, permitted_classes: [Time])
+        frontmatter_hash['date'] = Date.today.strftime('%Y-%m-%d')
+        new_frontmatter = YAML.dump(frontmatter_hash)
+        content.sub!(/---\s*\n(.+?)\n?^---\s*\n/m, "---\n#{new_frontmatter}---\n")
+        content.sub!(/---\n---\n/, "---\n")
+        file.rewind
+        file.write(content)
+        file.truncate(file.pos)
+      end
+    end
+
+
+
+    puts "Draft '#{draft_to_promote}' has been promoted to '#{new_filename}'."
+  end
+
+  def rationalize_path(s)
+    return s unless s.length == 8 && s.match?(/\A[a-fA-F0-9]+\z/)
+
+    search_dirs = ['_drafts', '_posts', 'writing-tips/_posts'] # Adjust based on the task
+    found_file_path = nil
+
+    search_dirs.each do |dir|
+      Dir.glob("#{dir}/**/*").each do |file|
+        if File.basename(file, ".*").include?(s)
+          found_file_path = file
+          break
+        end
+      end
+      break if found_file_path
+    end
+
+    if found_file_path
+      puts "Found file: #{found_file_path}"
+      return found_file_path
+    else
+      puts "No file found matching the ID: #{s}"
+    end
+    exit
+  end
+
+  desc 'Demote a post to draft by removing the prepended date'
+  task :demote, [:file_path] do |t, args|
+    # file_path = args[:file_path]
+    drafts_dir = '_drafts'
+    posts_dir = '_posts'
+    file_path = rationalize_path(args[:file_path])
+
+    unless File.exist?(file_path) && file_path.start_with?(posts_dir)
+      puts "File does not exist or is not in the '#{posts_dir}' directory."
+      next
+    end
+
+    filename = File.basename(file_path)
+    # Regular expression to remove the date (YYYY-MM-DD-) from the start of the filename
+    new_filename = filename.sub(/^\d{4}-\d{2}-\d{2}-/, '')
+
+    FileUtils.mv(file_path, File.join(drafts_dir, new_filename))
+
+    puts "Post '#{filename}' has been demoted to draft '#{new_filename}'."
+  end
 end
 # lib/tasks/image_conversion.rake
 
@@ -151,6 +281,7 @@ namespace :images do
     def convert_to_avif(input_path)
       output_path = input_path.gsub(File.extname(input_path), '.avif')
       return if File.exist?(output_path)
+
       system("magick convert '#{input_path}' -quality 40 '#{output_path}'")
       output_path
     end
@@ -158,12 +289,14 @@ namespace :images do
     def crawl_directory(directory)
       Find.find(directory) do |path|
         next if File.directory?(path) # Skip directories
+
         o_size = size(path)
 
         case File.extname(path).downcase
         when '.jpg', '.jpeg', '.png'
           npath = convert_to_avif(path)
           next if npath.nil?
+
           n_size = size(npath)
           reduction = ((o_size - n_size) / o_size.to_f) * 100
           puts "Converted: #{File.basename(path)} .. #{o_size}MB => #{n_size}MB = #{reduction.round(3)}%"

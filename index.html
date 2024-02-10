@@ -51,7 +51,9 @@ enabled: true
 </section>
 
 {% for post in paginator.posts %}
+{% unless post.categories contains 'unlisted' %}
 {% include post-card.html %}
+{% endunless %}
 {% endfor %}
 
 <div class="pagination flex justify-around">
