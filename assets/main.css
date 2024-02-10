@@ -9,6 +9,8 @@
   --radius-blob-3: 37% 63% 56% 44% / 49% 56% 44% 51%;
   --radius-blob-4: 63% 37% 37% 63% / 43% 37% 63% 57%;
   --radius-blob-5: 49% 51% 48% 52% / 57% 44% 56% 43%;
+  /* --radius-blob-6: 60% 30% 60% 60% / 30% 30% 60% 60%; */
+  --radius-blob-6: 35% 65% 30% 70% / 50% 58% 42% 50%;
 }
 
 @layer base {
@@ -26,6 +28,9 @@
   }
   .rounded-blob-5 {
     border-radius: var(--radius-blob-5);
+  }
+  .rounded-blob-6 {
+    border-radius: var(--radius-blob-6);
   }
   
   .bg-base-300 {

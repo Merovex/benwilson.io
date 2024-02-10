@@ -1,11 +1,62 @@
 <header class="max-w-prose mx-auto mt-16 flex flex-col justify-center">
   <a class="inline-flex items-center flex-col mx-auto" aria-label="All posts from Ben Wilson, Author" href="/">
-    <picture class="shadow size-16 rounded-blob-4">
-      <source type="image/avif" srcset="/assets/images/ben-beard-2024.avif" class="rounded-blob-4 shadow">
-      <img src="/assets/images/ben-beard-2024.jpg" size="50x50" alt="" class="rounded-blob-4 shadow">
-    </picture>
+    <div class="size-24 inverse-blob bg-primary-500/20 p-1.5 flex items-center justify-center">
+      <div class="size turd-blob bg-primary-500/30 p-1 flex items-center justify-center">
+        <picture class="shadow" style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
+          <source type="image/avif" srcset="/assets/images/ben-beard-2024.avif" class="shadow blob"
+            style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
+          <img src="/assets/images/ben-beard-2024.jpg" size="50x50" alt="" class="shadow blob"
+            style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
+        </picture>
+      </div>
+    </div>
     <p class=" text-subtle uppercase txt--normal tracking-widest flush--top mb-4">
       {{ site.title }}
     </p>
   </a>
 </header>
+<script>
+  const inverse = document.querySelector('.inverse-blob');
+  const turd = document.querySelector('.turd-blob');
+  // Initial border-radius values and direction flags for each corner
+  let radii = [
+    { value: 35, increasing: true }, // Top left
+    // { value: 65, increasing: false }, // Top right
+    { value: 30, increasing: true }, // Bottom right
+    // { value: 70, increasing: false }, // Bottom left
+    { value: 50, increasing: false }, // Top left
+    // { value: 58, increasing: true }, // Top right
+    { value: 40, increasing: false }, // Bottom right
+    // { value: 50, increasing: false }  // Bottom left
+  ];
+
+  const updateBorderRadius = () => {
+    // Update each radius value based on its current direction
+    radii = radii.map(corner => {
+      if (corner.increasing) {
+        corner.value++;
+        if (corner.value >= 70) corner.increasing = false;
+      } else {
+        corner.value--;
+        if (corner.value <= 20) corner.increasing = true;
+      }
+      return corner;
+    });
+
+    // Apply the updated border-radius values to the blob
+    const borderRadius = `${radii[0].value}% ${100 - radii[0].value}% ${radii[1].value}% ${100 - radii[1].value}% / ${radii[2].value}% ${100 - radii[2].value}% ${radii[3].value}% ${100 - radii[3].value}%`;
+    inverse.style.borderRadius = `${radii[2].value}% ${100 - radii[2].value}% ${radii[3].value}% ${100 - radii[3].value}% / ${radii[0].value}% ${100 - radii[0].value}% ${radii[1].value}% ${100 - radii[1].value}%`;
+    turd.style.borderRadius = `${radii[1].value}% ${100 - radii[1].value}% ${radii[2].value}% ${100 - radii[2].value}% / ${radii[3].value}% ${100 - radii[3].value}% ${radii[0].value}% ${100 - radii[0].value}%`;
+    const blobs = document.querySelectorAll('.blob');
+    blobs.forEach((blob, index) => {
+      blob.style.borderRadius = borderRadius;
+      // console.log(blob.style.borderRadius);
+    });
+    // console.log(borderRadius);
+  };
+
+  // Start the animation
+  setInterval(updateBorderRadius, 250);
+  // on pageload call updateBorderRadius
+  updateBorderRadius();
+</script>
