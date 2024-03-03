@@ -86,6 +86,13 @@ h1 {
 
   aspect-ratio: 16/9;
 }
+.clamped {
+  line-clamp: 5;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
 .post-card header, .post-card footer {
     @apply text-center;
 }
