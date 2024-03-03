@@ -83,6 +83,8 @@ h1 {
 .post-card {
   @apply relative max-w-prose rounded shadow-lg mx-auto px-8 py-6 my-8;
   @apply bordered;
+
+  aspect-ratio: 16/9;
 }
 .post-card header, .post-card footer {
     @apply text-center;
