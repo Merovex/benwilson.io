@@ -1,0 +1,5 @@
+.post {
+    a {
+        color: var(--md-sys-color-hyperlink);
+    }
+}

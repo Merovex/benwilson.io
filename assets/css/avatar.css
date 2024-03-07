@@ -1,0 +1,29 @@
+
+:root {
+    --avatar-size: 4rem;
+}
+.avatar {
+
+    /* max-width: 80px; */
+    /* max-height: 80px; */
+
+    height: var(--avatar-size);
+    width: var(--avatar-size);
+    aspect-ratio: 1/1;
+}
+.inverse-blob {
+    height: calc(var(--avatar-size) * 1.1);
+    width: calc(var(--avatar-size) * 1.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: auto;
+    background-color: var(--md-sys-color-primary);
+    padding: .1rem;
+}
+.turd-blob {
+    height: calc(var(--avatar-size) * 1.05);
+    width: calc(var(--avatar-size) * 1.05);
+    padding: .1rem;
+    background-color: var(--md-sys-color-on-primary);
+}

@@ -1,0 +1,12 @@
+.post-card {
+    max-width: 65ch;
+    width: 100%;
+    margin: var(--block-space-double) auto;
+    border-radius: var(--block-space);
+    border: 1px solid var(--md-sys-color-outline);
+    padding: var(--block-space-double);
+    position: relative;
+    header {
+        text-align: center;
+    }
+}
