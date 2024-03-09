@@ -5,12 +5,9 @@ title: 'Ben Wilson, author'
 ---
 {% include biography.html %}
 <div class="mb-12"></div>
-here
-<section class="carousel"
+<section class="carousel low-res-bg"
   style="background: url(/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2-a-lowres.avif) center right; background-size: cover;">
-  <div
-    class="carousel-container"
-    style="text-shadow: 1px 1px 1px #000">
+  <div class="carousel-container" style="text-shadow: 1px 1px 1px #000">
     <div class="carousel-item">
       <div class="w-4 shrink-0 sm:w-48"></div>
     </div>
@@ -27,8 +24,7 @@ here
         <picture>
           <source media="(max-width: 799px)" srcset="/assets/images/covers/{{ mobile_thumbnail_image }}">
           <source media="(min-width: 800px)" srcset="/assets/images/covers/{{ thumbnail_image }}">
-          <img src="/assets/images/covers/gambit-cover.avif" alt="Cover of Gambit"
-            class="book-cover--thumbnail">
+          <img src="/assets/images/covers/gambit-cover.avif" alt="Cover of Gambit" class="book-cover--thumbnail">
         </picture>
         {% else %}
         <img src="{{  'https://via.placeholder.com/1200x1800' }}" alt="Cover of {{ book.title }}"

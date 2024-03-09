@@ -3,21 +3,27 @@
     width: 100%;
     margin-inline: auto;
 }
+
 .centered {
     margin-inline: auto;
 }
+
 .rounded-full {
     border-radius: 9999px;
 }
+
 .push-top {
     margin-block-start: var(--block-space);
 }
+
 .txt-align-center {
     text-align: center;
 }
+
 .txt-subtle {
     color: var(--md-sys-color-outline);
 }
+
 .coverall {
     position: absolute;
     top: 0;
@@ -25,50 +31,67 @@
     width: 100%;
     height: 100%;
 }
+
 .clamped {
     display: -webkit-box;
     -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
 .txt-sm {
     font-size: 0.85rem;
 }
+
 .flex {
     display: flex;
 }
+
 .inline-flex-column {
     display: inline-flex;
     flex-direction: column;
 }
+
 .flex-column {
     display: flex;
     flex-direction: column;
 }
+
 .align-center {
     align-items: center;
 }
+
 .justify-center {
     justify-content: center;
 }
+
 .size-24 {
     height: 6rem;
     width: 6rem;
 }
+
 .size-20 {
     height: 5rem;
     width: 5rem;
 }
+
 .size-16 {
     height: 4rem;
     width: 4rem;
 }
+
 .gap {
     gap: 1;
 }
+
 .no-underline {
     text-decoration: none;
 }
+
 .width-two-thirds {
     width: 66%;
+}
+
+.txt-uppercase {
+    text-transform: uppercase;
 }

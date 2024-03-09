@@ -1,5 +1,22 @@
 .color-scheme-button {
     height: 1.5rem;
     width: 1.5rem;
-    color: red;
+    color: var(--md-sys-color-on-background);
+}
+
+.color-scheme-button {
+    display: none;
+}
+
+/* Apply styles for dark mode */
+
+[data-color-scheme="dark"] .color-scheme-button.dark-mode {
+    display: inline-block;
+    color: var(--md-sys-color-on-background);
+}
+
+/* Apply styles for light mode */
+[data-color-scheme="light"] .color-scheme-button.light-mode {
+    display: inline-block;
+    color: var(--md-sys-color-on-background);
 }

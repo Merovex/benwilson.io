@@ -1,23 +1,20 @@
 <header class="width-prose push-top-double flex-column justify-center">
-  <a class="inline-flex-column items-center justify-center centered no-underline" aria-label="All posts from Ben Wilson, Author" href="/">
-    <div class="inverse-blob">
-      <div class="turd-blob">
-        <picture class="avatar" style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
-          <source type="image/avif" srcset="/assets/images/ben-beard-2024.avif" class="shadow blob"
-            style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
-          <img src="/assets/images/ben-beard-2024.jpg" size="50x50" alt="" class="avatar shadow blob"
-            style="border-radius: 35% 65% 30% 70% / 50% 58% 42% 50%">
-        </picture>
-      </div>
-    </div>
-    <p class="txt-subtle uppercase">
+  <a class="inline-flex-column items-center justify-center centered no-underline"
+    aria-label="All posts from Ben Wilson, Author" href="/">
+
+    <picture class="avatar centered rounded-full">
+      <source type="image/avif" srcset="/assets/images/ben-beard-2024.avif" class="shadow rounded-full">
+      <img src="/assets/images/ben-beard-2024.jpg" size="50x50" alt="" class="avatar shadow  rounded-full">
+    </picture>
+    <p class="txt-subtle txt-uppercase">
       {{ site.title }}
     </p>
   </a>
 </header>
 <script>
-  const inverse = document.querySelector('.inverse-blob');
-  const turd = document.querySelector('.turd-blob');
+
+  //const inverse = document.querySelector('.inverse-blob');
+  //const turd = document.querySelector('.turd-blob');
   // Initial border-radius values and direction flags for each corner
   let radii = [
     { value: 35, increasing: true }, // Top left
@@ -56,7 +53,7 @@
   };
 
   // Start the animation
-  setInterval(updateBorderRadius, 250);
+  //setInterval(updateBorderRadius, 250);
   // on pageload call updateBorderRadius
-  updateBorderRadius();
+  //updateBorderRadius();
 </script>
