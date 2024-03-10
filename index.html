@@ -9,7 +9,7 @@ enabled: true
 
 <section class="carousel low-res-bg"
   style="background: url(/assets/images/merovex_simple_star_field_in_the_depths_of_space_with_a_nebula__f2d9548b-46a6-427c-8257-0e185883a3e2-a-lowres.avif) center right; background-size: cover;">
-  <div class="carousel-container" style="text-shadow: 1px 1px 1px #000">
+  <div class="carousel-container push-top-double" style="text-shadow: 1px 1px 1px #000">
     <div class="carousel-item">
       <div class="w-4 shrink-0 sm:w-48"></div>
     </div>
@@ -54,21 +54,9 @@ enabled: true
 {% endunless %}
 {% endfor %}
 
-<div class="pagination flex justify-around">
-  {% if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path }}" class="bordered hidden rounded-full px-4 py-2">
-    Previous
-  </a>
-  {% else %}
-  <span class="previous hidden">Previous</span>
-  {% endif %}
-  <span class="page_number hidden ">
-    Page: {{ paginator.page }} of {{ paginator.total_pages }}
-  </span>
+<div class="pagination flex justify-center no-underline">
   {% if paginator.next_page %}
-  <a href="{{ paginator.next_page_path }}" class="border border-gray-500 rounded-full px-4 py-2">See more posts »</a>
-  {% else %}
-  <span class="next ">Next</span>
+  <a href="{{ paginator.next_page_path }}" class="button rounded-full">See more posts »</a>
   {% endif %}
 </div>
 

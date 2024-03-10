@@ -1,5 +1,6 @@
 html[data-color-scheme="light"] {
   --md-sys-color-primary: var(--md-sys-color-primary-light);
+  --md-sys-color-primary-20: var(--md-sys-color-primary-light-20);
   --md-sys-color-on-primary: var(--md-sys-color-on-primary-light);
   --md-sys-color-primary-container: var(--md-sys-color-primary-container-light);
   --md-sys-color-on-primary-container: var(--md-sys-color-on-primary-container-light);
@@ -29,5 +30,5 @@ html[data-color-scheme="light"] {
   --md-sys-color-surface-tint: var(--md-sys-color-surface-tint-light);
   --md-sys-color-outline-variant: var(--md-sys-color-outline-variant-light);
   --md-sys-color-scrim: var(--md-sys-color-scrim-light);
-  --md-sys-color-hyperlink: #a3bbff;
+  --md-sys-color-hyperlink: #4072fc;
 }

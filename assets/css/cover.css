@@ -1,54 +1,61 @@
 .book-cover--thumbnail {
-    height: 18rem;
-    width: 12rem;
-    aspect-ratio: 2/3;
-    border-radius: var(--inline-space);
-    object-fit: cover;
+  height: 18rem;
+  width: 12rem;
+  aspect-ratio: 2/3;
+  border-radius: var(--inline-space);
+  object-fit: cover;
+}
+
+.book-cover {
+  height: 24rem;
+  width: 16rem;
+  border-radius: var(--inline-space);
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  margin-inline: auto;
+}
+
+.book-summary {
+  margin: var(--block-space) 0;
+
+  .cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      aspect-ratio: 2/3;
+      margin: 0 auto;
+      max-height: 480px;
+      box-shadow: var(--elevation-1);
+
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+    }
   }
-  .book-cover {
-    height: 24rem;
-    width: 16rem;
-    border-radius: var(--inline-space);
-    aspect-ratio: 2/3;
-    object-fit: cover;
-    margin-inline: auto;
-  }
-  .book-summary {
-    margin: var(--block-space) 0;
+
+  @media (min-width: 100ch) {
+    display: flex;
+    gap: var(--block-space);
+    padding: var(--block-space);
+
     .cover {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        aspect-ratio: 2/3;
-        margin: 0 auto;
-        max-height: 480px;
-        box-shadow: var(--elevation-1);
-  
-        object-fit: cover;
-        border-radius: var(--radius-sm);
-      }
+      width: 50%;
     }
-    @media (min-width: 100ch) {
-      display: flex;
-      gap: var(--block-space);
-      padding: var(--block-space);
-      .cover {
-        width: 50%;
-      }
-    }
-    
   }
-  .book-link {
-    
-    padding: var(--inline-space) 0;
-   
-  }
-  .book-link {
-    padding: var(--inline-space) 0;
-  
-    border-top: 1px solid var(--md-sys-color-outline-variant);
-    border-bottom: 1px solid var(--md-sys-color-outline-variant);
-    margin: -1px;
-  }
-  
+
+}
+
+.book-link {
+
+  padding: var(--inline-space) 0;
+
+}
+
+.book-link {
+  padding: var(--inline-space) 0;
+
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  margin: -1px;
+}

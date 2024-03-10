@@ -10,7 +10,7 @@ hook-1: Dekumo agent gets involved in the Imperial Election while struggling his
 hook: Would you use your least effective agent on a critical mission? When Jonaldy Ammonett is its last choice, that's just what the Dekumo does.
 series:
   - Postal Marines
-summary: "In a high-stakes game of power and strategy, failure is not an option. During the critical Imperial Election, a covert group entrusts agent Jonaldy Ammonett with a mission that could tip the balance of power in their favor. The catch? His track record is a string of botched operations. Teamed up with the equally inexperienced Postal Marine, Danel Bophendze, they embark on a suicide mission that will test their combat skills and endurance. Can Jonaldy finally achieve a hard-won victory and rise to the challenge?"
+summary: "In a high-stakes game of power and strategy, failure is not an option. During the critical Imperial Election, a covert group entrusts agent Jonaldy Ammonett with a mission that could tip the balance of power in their favor. The catch? His track record is a string of botched operations. Teamed up with Postal Marine Danel Bophendze, they embark on a suicide mission that will test their combat skills and endurance. Can Jonaldy finally achieve a hard-won victory and rise to the challenge?"
 date: 2021-04-12T06:58:06+05:00
 links:
   kindle: "https://amzn.to/3IcJGc3"

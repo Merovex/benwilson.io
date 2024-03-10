@@ -1,5 +1,6 @@
 html[data-color-scheme="dark"] {
   --md-sys-color-primary: var(--md-sys-color-primary-dark);
+  --md-sys-color-primary-20: var(--md-sys-color-primary-dark-20);
   --md-sys-color-on-primary: var(--md-sys-color-on-primary-dark);
   --md-sys-color-primary-container: var(--md-sys-color-primary-container-dark);
   --md-sys-color-on-primary-container: var(--md-sys-color-on-primary-container-dark);
