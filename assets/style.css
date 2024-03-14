@@ -1,0 +1,42 @@
+@import url(./css/tokens.css);
+@import url(./css/colors.module.css);
+@import url(./css/typography.module.css);
+@import url(./css/theme.light.css);
+@import url(./css/theme.dark.css);
+@import url(./css/avatar.css);
+@import url(./css/base.css);
+@import url(./css/button.css);
+@import url(./css/carousel.css);
+@import url(./css/color-scheme.css);
+@import url(./css/cover.css);
+@import url(./css/hero.css);
+@import url(./css/post-card.css);
+@import url(./css/post.css);
+@import url(./css/subscriber-action.css);
+@import url(./css/utilities.css);
+@import url(fonts.css);
+
+html {
+    --font-family-sans: outfit, 'Atkinson Hyperlegible', sans-serif;
+    --font-family-display: 'Fjalla One', sans-serif;
+    font-family: var(--font-family-sans);
+    font-size: 17px;
+    padding: 0;
+}
+
+h1 {
+    font-family: var(--font-family-display);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+    background: var(--md-sys-color-background);
+    color: var(--md-sys-color-on-background);
+
+    /* margin if less than 100ch wide */
+    @media (max-width: 100ch) {
+        margin: 1rem;
+    }
+}
