@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+##!/home/merovex/.rvm/rubies/ruby-3.1.3/bin/ruby
 #!/Users/merovex/.rvm/rubies/ruby-3.1.2/bin/ruby
 
 require 'feedjira'
