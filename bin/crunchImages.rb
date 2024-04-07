@@ -5,14 +5,17 @@ require 'find'
 def convert_to_avif(input_path)
   # Remove the extension and add .convert_to_avif
   output_path = input_path.gsub(File.extname(input_path),'.avif')
+  
   return if File.exists?(output_path)
-  system("magick convert '#{input_path}' -quality 40 '#{output_path}'")
+  puts "Converting: #{input_path} to #{output_path}"
+  system("convert '#{input_path}' -quality 40 '#{output_path}'")
   return output_path
 end
 
 def crawl_directory(directory)
   directory ||= 'assets/images/'
   Find.find(directory) do |path|
+    
     next if File.directory?(path) # Skip directories
     o_size = size(path)
 
@@ -31,4 +34,4 @@ def size(path)
   (File.size(path).to_f / 2**20).round(3) # Convert bytes to megabytes
 end
 
-crawl_directory('/Users/merovex/Code/merovex/benwilson.io/assets/')
+crawl_directory('/home/merovex/Code/benwilson.io/assets/')
