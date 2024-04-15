@@ -13,7 +13,7 @@ I also mocked up covers for all five. Maybe I will keep them, or hire a cover ar
   
 Bridging tech and fiction, I moved my tools off of my website to a [GitHub site](https://merovex.github.io).  
   
-**The Move from Apple.** In March, I said I was going to go Apple free for a month. Six weeks later, where am I on the journey? Well, last week I had a [Framework](https://frame.work)computer delivered. Not particularly cheaper than the XPS was, but it boasts promise of modularity and upgradeability that I've not seen in a laptop yet. The question is whether a laptop would survive me long enough to need its guts swapped out. I upgraded to a 32" 4k monitor since I'm getting older. I still drive an iPad, but I see a Galaxy in my future.  
+**The Move from Apple.** In March, I said I was going to go Apple-free for a month. Six weeks later, where am I on the journey? Well, last week I had a [Framework](https://frame.work)computer delivered. Not particularly cheaper than the XPS was, but it boasts promise of modularity and upgradeability that I've not seen in a laptop yet. The question is whether a laptop would survive me long enough to need its guts swapped out. I upgraded to a 32" 4k monitor since I'm getting older. I still drive an iPad, but I see a Galaxy in my future.  
   
 Running Windows with WSL for Linux gave me everything I used Apple for. All the applications I relied on were not in Apple's walled garden. I gave my wife my Apple M1, so I've crossed the Rubicon. We just canceled our last subscription. I've not used WSL much as I hit a bit of a learning curve. But I am going to a conference in a few weeks, so I need to acclimate.  
   
